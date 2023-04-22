@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/css/automovel.css">
+
+    <title>Automovel</title>
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a onclick="direcionar_vendas()">Controle de Vendas</a></li>
+            <li><a class="active" onclick="direcionar_automovel()">Controle de Automovéis</a></li>
+            <li><a onclick="logout()">Logout</a></li>
+        </ul>
+        <h1>Controle de Automóveis</h1>
+        <div>
+            <img class = "banner" src="../static/imagens/automoveis.jpg">
+        </div>  
+    </header>
+
+    <section class="section1">
+        <h3>Cadastre um novo automóvel</h3>
+        <div>
+            <input type="text" id="nome" placeholder="Nome do automóvel" required="required" autocomplete="off"/>
+        </div>
+        <div>
+            <input type="text" id="marca" placeholder="Marca do automóvel" required="required" autocomplete="off"/>
+        </div>
+        <div>
+            <input type="text" id="tipo" placeholder="Tipo de automóvel" required="required" autocomplete="off" />
+        </div>
+        <div>
+            <button class = "btn" onclick="verificar_carro()">Cadastrar</button>
+        </div>
+        
+    </section>
+
+    <section class="section2">
+        <table id="TableAutomovel">
+            <caption>Automóveis Monitorados</caption>
+            <tr>
+                <th>Nome</th>
+                <th>Marca</th>
+                <th>Tipo</th>
+                <th><img src="../static/imagens/lixeira.png" width="15px" height="15px"></th>
+            </tr>
+        </table>
+    </section>
+
+    <script src="../static/javascript/automovel.js"></script>
+
+</body>
+
+</html>

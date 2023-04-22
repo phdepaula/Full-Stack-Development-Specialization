@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/css/vendas.css">
+
+    <title>Vendas</title>
+</head>
+
+<body>
+
+    <header>
+        <ul>
+            <li><a class="active" onclick="direcionar_vendas()">Controle de Vendas</a></li>
+            <li><a onclick="direcionar_automovel()">Controle de Automovéis</a></li>
+            <li><a onclick="logout()">Logout</a></li>
+        </ul>
+        <div>
+            <h1 class="title">Controle de Vendas</h1>
+        </div>
+        <div>
+            <img class = "banner" src="../static/imagens/controle.png">
+        </div>  
+    </header>
+
+    <section class="section1">
+        <h3>Cadastre uma nova venda</h3>
+            <div>
+                <input type="text" id="proprietario" placeholder="Nome do proprietário" required="required" autocomplete="off"/>
+            </div>
+            <div>
+                <input type="text" id="automovel" placeholder="Nome do automóvel" required="required" autocomplete="off"/>
+            </div>
+            <div>
+                <input type="number" id="valor" placeholder="Valor do automóvel" required="required" autocomplete="off" />
+            </div>
+            <div>
+                <input type="number" id="ano" placeholder="Ano do automóvel" required="required" autocomplete="off"/>
+            </div>    
+            <div>    
+                <input type="text" id="status" placeholder="Status de venda" required="required" autocomplete="off"/>
+            </div>
+            <div>
+                <button class ="btn" onclick="verificar_venda()">Cadastrar</button>
+            </div>
+    </section>
+
+    <section class="section2">
+        <table id="TableVendas">
+            <caption>Vendas Monitoradas</caption>
+            <tr>
+                <th>ID</th>
+                <th>Proprietário</th>
+                <th>Automóvel</th>
+                <th>Marca</th>
+                <th>Ano</th>
+                <th>Valor</th>
+                <th>Tipo</th>
+                <th>Data de Entrada</th>
+                <th>Status</th>
+                <th><img src="../static/imagens/lixeira.png" width="15px" height="15px"></th>
+            </tr>
+        </table>
+    </section>
+
+    <script src="../static/javascript/vendas.js"></script>
+
+</body>
+
+</html>
