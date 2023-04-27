@@ -80,7 +80,7 @@ def autenticar(query: LoginSchema):
 
 # API's de Automovel
 @app.get('/automovel', tags = [automovel_tag])
-def automovel():    
+def automovel():
     """Redireciona para a rota /automovel, tela que permite o usuario realizar o controle de automovéis."""
     global status_login
 
@@ -163,7 +163,7 @@ def deletar_automovel(query: AutomovelBuscaSchema):
                 return {"mensagem": mensagem}, 400
     
     except Exception as e:
-        mensagem = f'ERRO: ERRO! Automóvel não encontrado!'
+        mensagem = f'ERRO: Automóvel não encontrado!'
         return {"mensagem": mensagem}, 400
 
 
