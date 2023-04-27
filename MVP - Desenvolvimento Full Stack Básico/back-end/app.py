@@ -23,11 +23,11 @@ def logout():
     global status_login
 
     if status_login['status'] == 'conectado':
-        mensagem = f"O usuário foi desconectado! Redirecionando para o login!"
+        mensagem = f"O usuário foi desconectado!"
         status_login['usuario'] = None
         status_login['status'] = 'desconectado'
     else:
-        mensagem = f'O login ainda foi realizado!'
+        mensagem = f'O login ainda não foi realizado!'
     
     return {"mensagem": mensagem}, 200
 

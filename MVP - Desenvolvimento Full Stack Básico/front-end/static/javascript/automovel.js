@@ -134,7 +134,7 @@ const logout = async () => {
     .then((response) => response.json())
     .then((data) => {
       alert(data.mensagem)
-      if (data.mensagem === 'Usuário foi desconectado!'){
+      if (data.mensagem === 'O usuário foi desconectado!'){
         window.location.href = "http://127.0.0.1:5000/login";
       }
     })
