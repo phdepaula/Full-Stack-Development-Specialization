@@ -52,22 +52,28 @@ const removeElement = () => {
       let div = this.parentElement.parentElement;
       const nomeItem = div.getElementsByTagName('td')[0].innerHTML
       if (confirm("Você tem certeza?")) {
-        div.remove()
-        deleteAutomovel(nomeItem)
-        alert("Removido!")
+        deleteAutomovel(nomeItem, div)
       }
     }
   }
 }
 
 
-const deleteAutomovel = (item) => {
+const deleteAutomovel = (item, div) => {
   console.log(item)
   let url = 'http://127.0.0.1:5000/deletar_automovel?nome=' + item;
   fetch(url, {
     method: 'delete'
   })
     .then((response) => response.json())
+    .then((data) => {
+      if (data.mensagem === 'SUCESSO! Automóvel deletado!'){
+        div.remove()
+        alert("Removido!")
+      } else {
+        alert(data.mensagem)
+      }
+    })    
     .catch((error) => {
       console.error('Error:', error);
     });
