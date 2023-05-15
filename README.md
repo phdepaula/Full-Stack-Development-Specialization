@@ -1,8 +1,12 @@
-# **MVP - Especialização em Desenvolvimento Full Stack - Pontifícia Universidade Católica do Rio de Janeiro**
+# **MVP's - Especialização em Desenvolvimento Full Stack - Pontifícia Universidade Católica do Rio de Janeiro**
 
 Projetos desenvolvidos para a pós graduação/especialização realizada em Desenvolvimento Full Stack.
 
-Mais informações: https://especializacao.ccec.puc-rio.br/especializacao/desenvolvimento-full-stack
+* **Sprint 1:** Desenvolvimento Full Stack Básico
+* **Sprint 2:** Desenvolvimento Front-End Avançado
+* **Sprint 3:** Desenvolvimento Back-End Avançado
+
+> **Mais informações:** https://especializacao.ccec.puc-rio.br/especializacao/desenvolvimento-full-stack
 
 ## **Dados Pessoais**
 
