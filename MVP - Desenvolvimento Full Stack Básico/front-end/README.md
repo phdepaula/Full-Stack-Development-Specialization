@@ -1,14 +1,7 @@
 # **Front End - Controle de Vendas de Automóveis**
 
-Este projeto é referente a entrega do MVP da especialização em Desenvolvimento Full Stack.
+Diretório com todas as especificações do front-end desenvolvidas para o projeto.
 
-Aluno: Pedro Henrique de Paula Alves.
-
-Universidade: Pontifícia Universidade Católica do Rio de Janeiro (PUC RIO).
-
-Disciplina: Desenvolvimento Full Stack Básico.
-
----
 ## **Como executar**
 
 Primeiramente, é necessário iniciar a API no diretório de back-end (que está um diretório atrás deste).
