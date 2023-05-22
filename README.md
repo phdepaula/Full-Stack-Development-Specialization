@@ -1,4 +1,4 @@
-# **MVP's - Especialização em Desenvolvimento Full Stack - Pontifícia Universidade Católica do Rio de Janeiro**
+# 💼 **MVP's - Especialização em Desenvolvimento Full Stack - Pontifícia Universidade Católica do Rio de Janeiro**
 
 Projetos desenvolvidos para a pós graduação/especialização realizada em Desenvolvimento Full Stack.
 
@@ -8,7 +8,7 @@ Projetos desenvolvidos para a pós graduação/especialização realizada em Des
 
 > **Mais informações:** https://especializacao.ccec.puc-rio.br/especializacao/desenvolvimento-full-stack
 
-## **Dados Pessoais**
+## 🪪 **Dados Pessoais**
 
     Estudante: Pedro Henrique de Paula Alves - Uberlândia-MG
     Universidade: Pontifícia Universidade Católica do Rio de Janeiro
