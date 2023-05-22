@@ -1,8 +1,8 @@
-# Back End - Controle de Vendas de Automóveis
+# ⚙️ **Back End - Controle de Vendas de Automóveis**
 
 Diretório com todas as especificações das API's desenvolvidas para o projeto.
 
-## **Como executar**
+## ▶️ **Como executar**
 
 Será necessário ter todas as libs python listadas no `requirements.txt` instaladas.
 Após clonar o repositório, é necessário ir ao diretório raiz (back-end), pelo terminal, para poder executar os comandos descritos abaixo.
