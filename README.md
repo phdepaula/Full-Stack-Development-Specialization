@@ -1,4 +1,4 @@
-# 💼 **MVP's - Especialização em Desenvolvimento Full Stack - Pontifícia Universidade Católica do Rio de Janeiro**
+# 💼 **MVP's - Especialização em Desenvolvimento Full Stack**
 
 Projetos desenvolvidos para a pós graduação/especialização realizada em Desenvolvimento Full Stack.
 
