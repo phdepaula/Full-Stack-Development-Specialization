@@ -3,6 +3,8 @@ import React from 'react';
 import Logo from '../components/Logo'
 import login from '../assets/login.svg'
 
+import '../style/login.css';
+
 function Login() {
   const verificar_login = (buttonId) => {
     let inputUsuario = document.getElementById("usuario").value;
