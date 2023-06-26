@@ -35,6 +35,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ],
-    "plugins": ["@babel/plugin-proposal-private-property-in-object"]
+    "plugins": [
+      "@babel/plugin-proposal-private-property-in-object"
+    ]
   }
 }
