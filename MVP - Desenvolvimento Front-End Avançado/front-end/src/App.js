@@ -11,7 +11,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<PaginaInicial />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/produto" element={<Produto />} />
+      <Route path="/produto/*" element={<Produto />} />
       <Route path="*" element={<PaginaNaoEncontrada />} />
     </Routes>
   );
