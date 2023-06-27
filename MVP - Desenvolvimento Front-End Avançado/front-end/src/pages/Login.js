@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import '../style/login.css';
 
-function Login() {
+export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -95,5 +95,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;
