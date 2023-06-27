@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 import Logo from '../components/Logo'
@@ -9,13 +9,12 @@ import '../style/login.css';
 
 function Login() {
   const navigate = useNavigate();
-  const [isLogado, setIsLogado] = useState(false);
 
   useEffect(() => {
-    const storedIsLogado = Cookies.get('isLogado');
+    const cookieNomeUsuario = Cookies.get('nomeUsuario');
     
-    if (storedIsLogado === 'true') {
-      setIsLogado(true);
+    if (cookieNomeUsuario) {
+      navigate('/')
     }
   }, []);
 
@@ -39,8 +38,7 @@ function Login() {
 
     if (resposta_api === 'True'){
       alert('Login realizado!')
-      setIsLogado(true);
-      Cookies.set('isLogado', 'true');
+      Cookies.set('nomeUsuario', inputUsuario);
       navigate('/')
     }
     else {
@@ -53,22 +51,17 @@ function Login() {
 
     if (resposta_api === 'True'){
       alert('Conta criada com sucesso!')
-      setIsLogado(true);
-      Cookies.set('isLogado', 'true');
-      navigate('/')
     }
     else {
       alert('Erro ao criar conta!')
     }
   }
   
-  if (isLogado === true) {
-    navigate('/')
-  }
+  let cookieNomeUsuario = Cookies.get('nomeUsuario');
 
   return (
     <div>
-      {isLogado ? (
+      {cookieNomeUsuario ? (
         navigate('/')
       ): (
         <div className='Login'>
@@ -87,13 +80,13 @@ function Login() {
               </div>
 
               <div className='EntradaTexto'>
-                <input type='text' id='usuario' placeholder='Usuário' required='required' autocomplete='off'/>
-                <input type='text' id='senha' placeholder='Senha' required='required' autocomplete='off'/>
+                <input type='text' id='usuario' placeholder='Usuário' required='required' autoComplete='off'/>
+                <input type='password' id='senha' placeholder='Senha' required='required' autoComplete='off'/>
               </div>
 
               <div className='Botoes'>
-                <button id='entrar' onClick= {() => verificar_login('entrar')}>ENTRAR</button>
-                <button id='criar-conta' onClick= {() => verificar_login('criar-conta')}>CRIAR CONTA</button>
+                <button id='entrar' onClick={() => verificar_login('entrar')}>ENTRAR</button>
+                <button id='criar-conta' onClick={() => verificar_login('criar-conta')}>CRIAR CONTA</button>
               </div>
             </div>
           </section >
