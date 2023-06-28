@@ -68,7 +68,7 @@ export default function Login() {
           <section className='SecaoDireita'>
             <div className='FrameDireita'>
               <Logo />
-              <p id='FraseEmpresa'> Descubra a excelência em compras: nosso mercado online, onde qualidade e conveniência se encontram!</p>
+              <span id='FraseEmpresa'> Descubra a excelência em compras: nosso mercado online, onde qualidade e conveniência se encontram!</span>
             </div>
           </section >
 
@@ -76,7 +76,7 @@ export default function Login() {
             <div className='FrameEsquerda'>
               <div className='TituloLogin'>
                 <img src={ login } alt='Login' />
-                <p>Login</p>
+                <span>Login</span>
               </div>
 
               <div className='EntradaTexto'>
