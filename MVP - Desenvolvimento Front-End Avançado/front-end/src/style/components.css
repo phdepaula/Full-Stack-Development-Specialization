@@ -16,36 +16,76 @@
 }
 
 .Header {
-  display: flex;
+  display:flex;
   max-width: 1280px;
+  height: 64px;
   padding: 0px 16px;
   justify-content: space-between;
   align-items: center;
 }
 
 .Busca {
-  display: flex;
-  height: 64px;
-}
-
-#barra-busca {
-  display: flex;
+  display:flex;
   width: 577px;
   height: 48px;
-  padding: 12px 24px 12px 12px;
-  align-items: flex-start;
-  gap: 10px;
-  flex-shrink: 0;
   border-radius: 8px;
   border: 1px solid #FFF;
   background: #FFF;
+  justify-content: center;
+  align-items: center;
+}
+
+#barra-busca {
+  width: 529px;
+  height: 48px;
+  border: 0px;
+  padding: 12px 24px 12px 12px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#barra-busca:focus {
+  border: 0px;
+  outline: none;
 }
 
 .Busca img {
-  position: relative;
   width: 24px;
   height: 24px;
-  flex-shrink: 0;
-  color:#000000;
-  background:#fff;
+}
+
+.StatusLogin {
+  display:flex;
+  flex-direction: column;
+  width: 160px;
+  color: #FFF;
+  font-size: 14px;
+  font-family: Arial;
+}
+
+.Contas {
+  display:flex;
+  width: 160px;
+  font-weight: 700;
+  gap: 8px;
+}
+
+.Carrinho {
+  display:flex;
+  height: 48px;
+  justify-content: center;
+  align-items: top;
+}
+
+.Carrinho img {
+  align-items: center;
+  width: 40px;
+}
+
+.Contas img:hover,
+.Carrinho:hover,
+.Busca img:hover{
+  transition: 0.2s ease-in-out;
+  transform: scale(1.05);
+	cursor: pointer;
 }

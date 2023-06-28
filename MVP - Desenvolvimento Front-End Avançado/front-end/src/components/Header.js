@@ -20,17 +20,17 @@ export default function Header(props) {
       </div>
 
       <div className='StatusLogin'>
-        <p>Olá, {cookieNomeUsuario ? `${cookieNomeUsuario}!` : 'faça seu login'}</p>
-        
+        <span>Olá, {cookieNomeUsuario ? `${cookieNomeUsuario}!` : 'faça seu login'}</span>
+
         <div className='Contas'>
-          <p>Contas</p>
+          <span>Contas</span>
           <img src={ setaLogin } alt='setalogin' />
         </div>
       </div>
 
       <div className='Carrinho'>
         <img src={ carrinho } alt='setalogin' />
-        <p> { quantidade }</p>
+        <span> { quantidade }</span>
       </div>  
     </div>
   )
