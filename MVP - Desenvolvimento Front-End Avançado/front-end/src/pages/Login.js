@@ -19,17 +19,17 @@ export default function Login() {
   }, []);
 
   const verificar_login = (buttonId) => {
-    let inputUsuario = document.getElementById("usuario").value;
-    let inputSenha = document.getElementById("senha").value;
+    let usuario = document.getElementById('usuario').value;
+    let senha = document.getElementById('senha').value;
 
-    if (inputUsuario === '') {
-      alert("Digite o nome do usuário!");
-    } else if (inputSenha === '') {
-      alert("Digite a senha do usuário!");
+    if (usuario === '') {
+      alert('Digite o nome do usuário!');
+    } else if (senha === '') {
+      alert('Digite a senha do usuário!');
     } else if (buttonId === 'entrar') {
-      autenticar(inputUsuario, inputSenha)
+      autenticar(usuario, senha)
     } else {
-      criar_conta(inputUsuario, inputSenha)
+      criar_conta(usuario, senha)
     }
     }
 
