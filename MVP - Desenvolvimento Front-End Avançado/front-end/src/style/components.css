@@ -17,11 +17,12 @@
 
 .Header {
   display:flex;
-  max-width: 1280px;
   height: 64px;
   padding: 0px 16px;
   justify-content: space-between;
   align-items: center;
+  font-size: 14px;
+  font-family: Arial;
 }
 
 .Busca {
@@ -59,8 +60,6 @@
   flex-direction: column;
   width: 160px;
   color: #FFF;
-  font-size: 14px;
-  font-family: Arial;
 }
 
 .Contas {
@@ -95,7 +94,6 @@
 .LoginOculto,
 .EscurecerFundo {
   position: fixed;
-  max-width: 1280px;
   top: 64px;
   left: 0;
   width: 100%;

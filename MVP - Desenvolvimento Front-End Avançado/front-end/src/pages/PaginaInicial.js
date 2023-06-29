@@ -10,10 +10,15 @@ export default function PaginaInicial() {
 
   return (
     <div className='Page'>
-      <Header quantidade={quantidade} categoria ={categoria}/>
-      <div className='Conteudo'>
-        <span>OI</span>
-      </div>
+      <header>
+        <div className='Topo'>
+          <Header quantidade={quantidade} categoria ={categoria}/>
+        </div>
+        
+        <div className='Navegacao'>
+          <span>OI</span>
+        </div>
+      </header>
     </div>
   );
 }
