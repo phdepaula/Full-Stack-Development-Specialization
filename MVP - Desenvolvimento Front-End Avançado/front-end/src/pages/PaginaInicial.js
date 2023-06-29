@@ -6,10 +6,14 @@ import '../style/produtos.css'
 
 export default function PaginaInicial() {
   const quantidade = 0;
+  const categoria = 'carnes';
 
   return (
-    <header>
-      <Header quantidade={quantidade} />
-    </header>
+    <div className='Page'>
+      <Header quantidade={quantidade} categoria ={categoria}/>
+      <div className='Conteudo'>
+        <span>OI</span>
+      </div>
+    </div>
   );
 }
