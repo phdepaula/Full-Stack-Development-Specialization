@@ -1,0 +1,13 @@
+{
+  "carnes": [
+    {
+      "id": 1,
+      "nome": "Picanha (150 gramas)",
+      "fornecedor": "Frigorífico Brasileiro",
+      "preco": 30,
+      "descricao": "Carne importada da argentina",
+      "imagem": "picanha.png",
+      "detalhamento": "Na nossa busca incessante pela perfeição gastronômica, apresentamos a você a Picanha Suprema: um verdadeiro tesouro de sabor e maciez. Cuidadosamente selecionada a partir das melhores raças de gado, nossa picanha é uma sinfonia de suculência e textura que transcende todas as expectativas."
+    }
+  ]
+}
