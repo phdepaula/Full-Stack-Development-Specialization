@@ -92,12 +92,14 @@
 }
 
 .LoginOculto,
+.CarrinhoOculto,
 .EscurecerFundo {
   position: fixed;
   top: 64px;
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 0px 16px;
 }
 
 .EscurecerFundo {
@@ -106,37 +108,46 @@
   z-index: 9999;
 }
 
-.BGLogin {
+.LoginArea,
+.CarrinhoArea {
   display: flex;
   position: relative;
-  z-index: 10000;
-  top: -8px;
-  left: 73%;
-  justify-content: center;
-  align-items: center;
-  width: 145px;
+  background: #FFF;
+  width: 160px;
   height: 51px;
   border: 1px solid #000;
+  align-items: center;
+  justify-content: center;
   background: #ffffff;
   border-radius: 0px;
+  top: -4px;
+  z-index: 10000;
 }
 
-#ButtonLogin {
-  width: 118px;
-  padding: 8px 12px;
-  gap: 6px;
-  border-radius: 8px;
-  border: 1px solid #000;
-  background:  #F5EC02;
-  color: #000;
+.LoginArea {
+  left: 71%;
+}
+
+.CarrinhoArea {
+  float: right;
+}
+
+#ButtonLogin,
+#ButtonCarrinho {
   font-size: 12px;
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 0.6px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #000;
+  border: 1px solid #000;
+  background:  #F5EC02;
   cursor: pointer;
 }
 
-#ButtonLogin:hover {
+#ButtonLogin:hover,
+#ButtonCarrinho:hover {
   transition: 0.2s ease-in-out;
   transform: scale(1.05);
 	cursor: pointer;

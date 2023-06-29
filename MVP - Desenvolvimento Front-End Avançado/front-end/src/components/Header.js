@@ -10,29 +10,30 @@ import carrinho from '../assets/carrinho.svg';
 import produtos from '../produtos.json'
 
 export default function Header(props) {
-  const [clickLogin, setClickLogin] = useState(false);
   const cookieNomeUsuario = Cookies.get('nomeUsuario');
   const navigate = useNavigate();
-  const loginArea = useRef(null);
-
+  
   let quantidade = props.quantidade;
   let categoria =props.categoria;
-
-  function mostrarDiv() {
+ 
+  const [clickLogin, setClickLogin] = useState(false);
+  const loginArea = useRef(null);
+ 
+  function mostrarDivLogin() {
     setClickLogin(!clickLogin);
   }
 
   useEffect(() => {
-    function handleClickOutside(event) {
+    function statusClickLogin(event) {
       if (loginArea.current && !loginArea.current.contains(event.target)) {
         setClickLogin(false);
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', statusClickLogin);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', statusClickLogin);
     };
   }, []);
 
@@ -58,6 +59,27 @@ export default function Header(props) {
     }
   }
 
+  const [clickCarrinho, setClickCarrinho] = useState(false);
+  const carrinhoArea = useRef(null);
+
+  function mostrarDivCarrinho() {
+    setClickCarrinho(!clickLogin);
+  }
+
+  useEffect(() => {
+    function statusClickCarrinho(event) {
+      if (carrinhoArea.current && !carrinhoArea.current.contains(event.target)) {
+        setClickCarrinho(false);
+      }
+    }
+
+    document.addEventListener('mousedown', statusClickCarrinho);
+
+    return () => {
+      document.removeEventListener('mousedown', statusClickCarrinho);
+    };
+  }, []);
+
   return (
     <div className='Header'>
       <Logo />
@@ -72,24 +94,34 @@ export default function Header(props) {
 
         <div className='Contas'>
           <span>Contas</span>
-          <img src={setaLogin} alt='setalogin' onClick={mostrarDiv} />
+          <img src={setaLogin} alt='setalogin' onClick={mostrarDivLogin} />
         </div>
       </div>
     
       {clickLogin && (
           <div className='LoginOculto'>
             <div className='EscurecerFundo' />
-            <div className='BGLogin' ref={loginArea}>
+            <div className='LoginArea' ref={loginArea}>
               <button id='ButtonLogin' onClick={acaoLogin}>{cookieNomeUsuario ? 'Fazer Logout' : 'Fazer Login'}</button>
             </div>
           </div>
         )
       }
 
-      <div className='Carrinho'>
+      <div className='Carrinho' onClick={mostrarDivCarrinho}>
         <img src={carrinho} alt='setalogin' />
         <span> {quantidade}</span>
       </div>
+
+      {clickCarrinho && (
+          <div className='CarrinhoOculto' ref={carrinhoArea}>
+            <div className='EscurecerFundo' />
+            <div className='CarrinhoArea' ref={carrinhoArea}>
+              <button id='ButtonCarrinho'>Finalizar Compra</button>
+            </div>
+          </div>
+        )
+      }
     </div>
   );
 }
