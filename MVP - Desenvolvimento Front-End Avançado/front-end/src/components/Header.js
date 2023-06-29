@@ -80,6 +80,16 @@ export default function Header(props) {
     };
   }, []);
 
+  function comprar() {
+    if(quantidade === 0) {
+      alert('Não existem items no carrinho!')
+    } else if(cookieNomeUsuario) {
+      alert('Compra realizada!')
+    } else {
+      alert('Favor realizar o login para comprar!')
+    }
+  }
+
   return (
     <div className='Header'>
       <Logo />
@@ -117,7 +127,7 @@ export default function Header(props) {
           <div className='CarrinhoOculto' ref={carrinhoArea}>
             <div className='EscurecerFundo' />
             <div className='CarrinhoArea' ref={carrinhoArea}>
-              <button id='ButtonCarrinho'>Finalizar Compra</button>
+              <button id='ButtonCarrinho' onClick={comprar}>Finalizar Compra</button>
             </div>
           </div>
         )
