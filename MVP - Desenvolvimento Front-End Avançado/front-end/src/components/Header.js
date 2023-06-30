@@ -14,7 +14,7 @@ export default function Header(props) {
   const navigate = useNavigate();
   
   let quantidade = props.quantidade;
-  let categoria =props.categoria;
+  let categoria = 'Carnes'; //Necessária API para consultar
  
   const [clickLogin, setClickLogin] = useState(false);
   const loginArea = useRef(null);
@@ -124,7 +124,7 @@ export default function Header(props) {
       </div>
 
       {clickCarrinho && (
-          <div className='CarrinhoOculto' ref={carrinhoArea}>
+          <div className='CarrinhoOculto' >
             <div className='EscurecerFundo' />
             <div className='CarrinhoArea' ref={carrinhoArea}>
               <button id='ButtonCarrinho' onClick={comprar}>Finalizar Compra</button>
