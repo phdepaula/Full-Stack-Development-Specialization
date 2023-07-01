@@ -14,7 +14,6 @@ export default function Header(props) {
   const navigate = useNavigate();
   
   let quantidade = props.quantidade;
-  let categoria = 'carnes'; //Necessária API para consultar
  
   const [clickLogin, setClickLogin] = useState(false);
   const loginArea = useRef(null);
@@ -52,7 +51,7 @@ export default function Header(props) {
 
     if(pesquisa.trim().length === 0) {
       alert('Favor digitar o nome produto!')
-    } else if (produtos[categoria] && produtos[categoria].some(item => item.nome === pesquisa)) {
+    } else if (produtos['produtos'] && produtos['produtos'].some(item => item.nome === pesquisa)) {
       navigate('/produto/' + pesquisa)
     } else {
       alert('O produto nao existe!')
