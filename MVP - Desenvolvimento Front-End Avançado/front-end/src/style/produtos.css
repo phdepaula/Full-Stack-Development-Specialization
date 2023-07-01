@@ -1,11 +1,12 @@
 body {
   max-width: 1280px;
-	margin: 0 auto;
 }
 
 .Page {
   display: flex;
   flex-direction: column;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
 header {
@@ -30,14 +31,18 @@ header {
 
 main {
   display: flex;
+  flex-direction: column;
   top: 104px;
   height: 768px;
-  flex-direction: column;
   background: #E8E8E8;
-  color: #fff
+  color: #fff;
+}
+
+.Body {
+  display: flex;
+  flex-direction: column;
 }
 
 footer {
-  position: relative;
   height: 160px;
 }
