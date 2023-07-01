@@ -14,7 +14,7 @@ export default function Header(props) {
   const navigate = useNavigate();
   
   let quantidade = props.quantidade;
-  let categoria = 'Carnes'; //Necessária API para consultar
+  let categoria = 'carnes'; //Necessária API para consultar
  
   const [clickLogin, setClickLogin] = useState(false);
   const loginArea = useRef(null);
