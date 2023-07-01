@@ -3,10 +3,18 @@ import Logo from '../components/Logo'
 import '../style/produtos.css'
 
 export default function Rodape() {
+
+  const RolarParaCima = () => {
+    const pageElement = document.querySelector('.Page');
+    if (pageElement) {
+      pageElement.scrollTop = 0;
+    }
+  };
+
   return (
     <div className='Rodape'>
       <div className='RodapeSuperior'>
-        <span>Voltar para o início</span>
+        <span id='VoltarInicio' onClick={RolarParaCima}>Voltar para o início</span>
       </div>
 
       <div className='RodapeInferior'>
