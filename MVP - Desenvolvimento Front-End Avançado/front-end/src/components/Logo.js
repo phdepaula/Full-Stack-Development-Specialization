@@ -7,4 +7,4 @@ export default function Logo() {
       <img src={ star } alt='Star' />
     </div>
   )
-  }
+}
