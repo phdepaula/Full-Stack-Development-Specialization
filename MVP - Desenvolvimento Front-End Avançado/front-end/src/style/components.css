@@ -218,3 +218,54 @@ body {
 #VoltarInicio {
   cursor: pointer;
 }
+
+.BannerCarouselComponente {
+  position: relative;
+  height: 280px;
+  align-items: center;
+  justify-content: center;
+}
+
+#Banner1,
+#Banner2,
+#Banner3 {
+  width: 100%;
+  height: 280px;
+  align-items: center;
+  justify-content: center;
+  background: #ffff;
+}
+
+#Banner1 {
+  background: #CCDBC4;
+}
+
+
+#Banner2 {
+  background: #FDBB00;
+}
+
+#Banner3 {
+  background: #E6972F;
+}
+
+.BannerCarouselComponente .slick-prev {
+  position: absolute;
+  top: 128px;
+  left: 8px;
+  z-index: 1;
+}
+
+.BannerCarouselComponente .slick-next {
+  position: absolute;
+  top: 128px;
+  right: 32px;
+  z-index: 1;
+}
+
+.BannerCarouselComponente .slick-prev:before,
+.BannerCarouselComponente .slick-next:before {
+  font-family: 'slick';
+  font-size: 44px;
+  color: #ffffff;
+}

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header'
 import Navegacao from '../components/Navegacao'
 import Rodape from '../components/Rodape'
+import BannerCarousel from '../components/Banner-Carousel'
 
 import '../style/produtos.css'
 
@@ -32,6 +33,10 @@ export default function PaginaInicial() {
         <div className='Body'>
           <div className='LocalizadorPagina'> 
             <span onClick={() => navigate('/')}>Pagina Inicial</span>
+          </div>
+
+          <div className='BannerCarousel'>
+            <BannerCarousel />
           </div>
         </div>
       </main>

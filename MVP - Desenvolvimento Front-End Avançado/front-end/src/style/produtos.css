@@ -59,6 +59,12 @@ main {
   text-decoration: underline;
 }
 
+.BannerCarousel {
+  padding: 0 16px;
+  width: 100%;
+  height: 280px;
+}
+
 footer {
   height: 160px;
 }
