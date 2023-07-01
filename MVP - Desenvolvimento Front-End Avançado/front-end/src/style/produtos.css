@@ -44,6 +44,21 @@ main {
   flex-direction: column;
 }
 
+.LocalizadorPagina {
+  margin: 8px 16px;
+  gap: 8px;
+  color: #000;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+}
+
+.LocalizadorPagina:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 footer {
   height: 160px;
 }

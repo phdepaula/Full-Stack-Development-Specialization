@@ -1,4 +1,5 @@
 import React, { useState }  from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Header from '../components/Header'
 import Navegacao from '../components/Navegacao'
@@ -8,12 +9,13 @@ import '../style/produtos.css'
 
 export default function PaginaInicial() {
   const quantidade = 0;
+  const navigate = useNavigate();
   const [categoria, setCategoria] = useState('Destaques');
 
   const tipoCategoria = (infoCategoria) => {
     setCategoria(infoCategoria)
   }
-  
+    
   return (
     <div className='Page'>
       <header>
@@ -28,7 +30,9 @@ export default function PaginaInicial() {
 
       <main>
         <div className='Body'>
-          <span>Body</span>
+          <div className='LocalizadorPagina'> 
+            <span onClick={() => navigate('/')}>Pagina Inicial</span>
+          </div>
         </div>
       </main>
 
