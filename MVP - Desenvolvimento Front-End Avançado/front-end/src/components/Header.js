@@ -3,9 +3,9 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from './Logo'
-import lupa from '../assets/lupa.svg'
-import setaLogin from '../assets/seta-para-baixo.svg'
-import carrinho from '../assets/carrinho.svg';
+import lupa from '../assets/general/lupa.svg'
+import setaLogin from '../assets/general/seta-para-baixo.svg'
+import carrinho from '../assets/general/carrinho.svg';
 
 import produtos from '../produtos.json'
 

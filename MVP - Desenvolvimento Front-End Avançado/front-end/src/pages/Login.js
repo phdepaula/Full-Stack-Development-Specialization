@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 import Logo from '../components/Logo'
-import login from '../assets/login.svg'
+import login from '../assets/general/login.svg'
 import { useNavigate } from 'react-router-dom';
 
 import '../style/login.css';

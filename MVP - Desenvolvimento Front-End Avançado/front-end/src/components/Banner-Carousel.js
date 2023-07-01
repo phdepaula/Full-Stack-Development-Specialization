@@ -3,9 +3,9 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import banner1 from '../assets/banner-1.svg'
-import banner2 from '../assets/banner-2.svg'
-import banner3 from '../assets/banner-3.svg'
+import banner1 from '../assets/banners/banner-1.svg'
+import banner2 from '../assets/banners/banner-2.svg'
+import banner3 from '../assets/banners/banner-3.svg'
 
 export default function BannerCarousel() {
   const configuracaoCarousel = {

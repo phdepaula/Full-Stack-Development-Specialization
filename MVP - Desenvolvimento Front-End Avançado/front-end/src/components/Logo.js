@@ -1,4 +1,4 @@
-import star from '../assets/star.svg'
+import star from '../assets/general/star.svg'
 
 export default function Logo() {
   return (
