@@ -160,35 +160,29 @@ body {
 .NavegacaoItems {
   height: 40px;
   color: #FFF;
-  text-align: center;
   font-size: 14px;
   font-family: Arial;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  cursor: pointer;
 }
 
 .ContainerNavegacao {
   display: flex;
   align-items: center;
   height: 40px;
-  gap: 16px;
+  gap: 64px;
+  padding: 16px;
 }
 
 .NavegacaoSpan{
   display: flex;
-  justify-content: center;
-  width: 110px;
+  justify-content: left;
 }
 
 .NavegacaoSpan span:hover {
-  display:flex;
-  height: 40px;
-  width: 110px;
-  align-items: center;
-  justify-content: center;
-  background: #2D4F66;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .Rodape {
