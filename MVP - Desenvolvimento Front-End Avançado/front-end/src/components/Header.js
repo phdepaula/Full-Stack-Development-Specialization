@@ -8,10 +8,12 @@ import setaLogin from '../assets/general/seta-para-baixo.svg'
 import carrinho from '../assets/general/carrinho.svg';
 
 import produtos from '../produtos.json'
+import existe_produto from '../existe_produto.json'
 
 export default function Header(props) {
   const cookieNomeUsuario = Cookies.get('nomeUsuario');
   const navigate = useNavigate();
+  const status_produto = existe_produto.status
   
   const quantidade = props.quantidade;
   const comprar = props.comprar;
@@ -52,7 +54,7 @@ export default function Header(props) {
 
     if(pesquisa.trim().length === 0) {
       alert('Favor digitar o nome produto!')
-    } else if (produtos['produtos'] && produtos['produtos'].some(item => item.nome === pesquisa)) {
+    } else if (status_produto) {
       navigate('/produto/' + pesquisa)
     } else {
       alert('O produto nao existe!')

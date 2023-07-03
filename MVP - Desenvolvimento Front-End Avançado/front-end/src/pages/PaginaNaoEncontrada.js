@@ -1,7 +1,5 @@
 import React from 'react';
 
-const PaginaNaoEncontrada = () => {
-  return <h1>Página não encontrada</h1>;
+export default function PaginaNaoEncontrada() {
+  return (<span className='PaginaNaoEncontrada'>Página não encontrada</span>)
 };
-
-export default PaginaNaoEncontrada;
