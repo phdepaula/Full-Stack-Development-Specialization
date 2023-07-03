@@ -13,7 +13,8 @@ export default function Header(props) {
   const cookieNomeUsuario = Cookies.get('nomeUsuario');
   const navigate = useNavigate();
   
-  let quantidade = props.quantidade;
+  const quantidade = props.quantidade;
+  const comprar = props.comprar;
  
   const [clickLogin, setClickLogin] = useState(false);
   const loginArea = useRef(null);
@@ -79,16 +80,6 @@ export default function Header(props) {
     };
   }, []);
 
-  function comprar() {
-    if(quantidade === 0) {
-      alert('Não existem items no carrinho!')
-    } else if(cookieNomeUsuario) {
-      alert('Compra realizada!')
-    } else {
-      alert('Favor realizar o login para comprar!')
-    }
-  }
-
   return (
     <div className='Header'>
       <Logo />
@@ -126,7 +117,7 @@ export default function Header(props) {
           <div className='CarrinhoOculto' >
             <div className='EscurecerFundo' />
             <div className='CarrinhoArea' ref={carrinhoArea}>
-              <button id='ButtonCarrinho' onClick={comprar}>Finalizar Compra</button>
+              <button id='ButtonCarrinho' onClick={() => comprar()}>Finalizar Compra</button>
             </div>
           </div>
         )

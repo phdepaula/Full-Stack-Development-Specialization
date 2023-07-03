@@ -33,16 +33,32 @@ export default function PaginaInicial() {
   
   const quantidadeCompras = (numCompras, preco) => {
     if(cookieNomeUsuario) {
-      const valor = Math.round((numCompras*preco));
+      const valor = Math.round((numCompras*preco))
 
       if (window.confirm(`Deseja adicionar a compra no valor de R$ ${valor} ao carrinho?`)) {
-        setQuantidade(quantidade + numCompras);
+        setQuantidade(quantidade + numCompras)
         setValorTotal(valorTotal + valor)
         alert('Compra adicionada ao carrinho!')
       }
     } else {
       alert('É necessário realizar login para adicionar compras ao carrinho!')
     }    
+  }
+
+  const finalizarCompra = () => {
+    if (quantidade === 0) {
+      alert('Não existem items no carrinho!')
+    } else if (window.confirm(`Deseja realizar a compra no valor de R$ ${valorTotal}?`)) {
+      setValorTotal(0)
+      setQuantidade(0);
+      alert('Compra realizada com sucesso!')
+    } else if (window.confirm(`Deseja cancelar a compra no valor de R$ ${valorTotal}?`)) {
+      setValorTotal(0)
+      setQuantidade(0);
+      alert('Compra cancelada!')
+    } else {
+      alert('Continue comprando!')
+    }
   }
   
   const scrollEsquerda = () => {
@@ -67,7 +83,7 @@ export default function PaginaInicial() {
     <div className='Page'>
       <header>
         <div className='Topo'>
-          <Header quantidade={quantidade}/>
+          <Header quantidade={quantidade} comprar={finalizarCompra} />
         </div>
         
         <div className='Navegacao'>
