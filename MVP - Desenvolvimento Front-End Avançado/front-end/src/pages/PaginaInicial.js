@@ -94,7 +94,7 @@ export default function PaginaInicial() {
       <main>
         <div className='Body'>
           <div className='LocalizadorPagina'> 
-            <span onClick={() => navigate('/')}>Pagina Inicial</span>
+            <span id='LocalizadorInicial'onClick={() => navigate('/')}>Pagina Inicial</span>
           </div>
 
           <div className='BannerCarousel'>

@@ -58,7 +58,7 @@ main {
   letter-spacing: 0.6px;
 }
 
-.LocalizadorPagina:hover {
+#LocalizadorInicial:hover {
   cursor: pointer;
   text-decoration: underline;
 }
