@@ -152,7 +152,8 @@ body {
 
 #ButtonLogin:hover,
 #ButtonCarrinho:hover,
-#ButtonComprarCard:hover {
+#ButtonComprarCard:hover,
+.QuantidadeCard img:hover {
   transition: 0.2s ease-in-out;
   transform: scale(1.05);
 	cursor: pointer;
