@@ -61,6 +61,8 @@ export default function CardProduto(props) {
   const menos = () => {
     if (quantidade > 1) {
       setQuantidade(quantidade - 1);
+    } else {
+      alert('A quantidade mínima do produto é 1!')
     }
   };
 
