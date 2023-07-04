@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import adicionar from '../assets/general/mais.svg'
 import remover from '../assets/general/menos.svg'
 import { imagensProdutos }  from './Imagens'
 
 export default function CardProduto(props) {
+  const navigate = useNavigate();
   const produto = props.produto;
   const compras = props.quantidadeCompras;
   
@@ -32,7 +34,7 @@ export default function CardProduto(props) {
   return (
     <article className='CardProduto'>
       <div className='ImagemProduto'>
-        <img src={imagem} alt='Imagem do Produto' />
+        <img src={imagem} alt='Imagem do Produto' onClick={() => navigate('/produto/' + produto.nome)} />
       </div>
 
       <div className='DetalhesProduto'>
