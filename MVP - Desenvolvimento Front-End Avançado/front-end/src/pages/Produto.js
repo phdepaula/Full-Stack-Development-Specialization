@@ -66,10 +66,12 @@ export default function PaginaInicial() {
   }
 
   const cancelarPagamento = (quantidadeCancelada, preco) => {
-    if (window.confirm(`Deseja cancelar ${quantidadeCancelada} compras(s) de ${nome}?`)) {
+    if (quantidade === 0) {
+      alert('Não existem compras no carrinho!')
+    }else if (window.confirm(`Deseja cancelar ${quantidadeCancelada} compras(s) de ${nome}?`)) {
       const valorCancelado = Math.round((quantidadeCancelada*preco))
       
-      alert(`Compra(s) canceladas!`)
+      alert('Compra(s) canceladas!')
       setQuantidade(quantidade - quantidadeCancelada);
       setValorTotal(valorTotal - valorCancelado)
     } else {
@@ -112,7 +114,9 @@ export default function PaginaInicial() {
         <div className='Body'>
           <div className='LocalizadorPagina'>
             <span id='LocalizadorInicial'onClick={() => navigate('/')}>Pagina Inicial</span>
-            <span>{">"}</span>
+            <span>{'>'}</span>
+            <span>{'Produto'}</span>
+            <span>{'>'}</span>
             <span>{nome}</span>
           </div>
 
