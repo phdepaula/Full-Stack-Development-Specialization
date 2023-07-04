@@ -49,6 +49,7 @@ main {
 }
 
 .LocalizadorPagina {
+  display:flex;
   margin: 8px 0px;
   gap: 8px;
   color: #000;
