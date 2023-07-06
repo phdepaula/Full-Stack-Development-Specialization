@@ -7,7 +7,7 @@
       "preco": 30,
       "frete": 5,
       "categoria": "carnes",
-      "descricao": "Quantidade minina: 150 gramas",
+      "informacao": "Quantidade minina: 150 gramas",
       "detalhamento": "Na nossa busca incessante pela perfeição gastronômica, apresentamos a Picanha Suprema: um verdadeiro tesouro de sabor e maciez. Cuidadosamente selecionada a partir das melhores raças de gado, nossa picanha é uma sinfonia de suculência e textura que transcende todas as expectativas. Proveniente da parte traseira do boi, próxima à cauda, esse corte triangular é um presente para os amantes de churrasco e apreciadores da alta gastronomia. Com seu marmoreio perfeito e a camada de gordura que se derrete durante o cozimento, a Picanha Suprema proporciona uma experiência sensorial única, onde cada mordida revela um sabor intenso e suculento."
     },
     {
@@ -17,7 +17,7 @@
       "preco": 20,
       "frete": 5,
       "categoria": "carnes",
-      "descricao": "Quantidade minina: 150 gramas",
+      "informacao": "Quantidade minina: 150 gramas",
       "detalhamento": "Em nossa incessante busca por excelência gastronômica, temos o prazer de apresentar a Alcatra Nobre: uma verdadeira joia de sabor e tenacidade. Rigorosamente escolhida dentre as melhores raças bovinas, nossa alcatra é uma harmonia de suculência e textura que surpreende todas as expectativas. Proveniente da parte traseira do boi, próxima ao quadril, essa peça de carne é um deleite para os paladares mais exigentes, oferecendo uma experiência gastronômica única e irresistível. Com marmoreio equilibrado, a Alcatra Nobre é o resultado de um cuidadoso processo de seleção, garantindo uma carne tenra e repleta de sabor que certamente satisfará os apreciadores de uma refeição requintada."
     },
     {
@@ -27,7 +27,7 @@
       "preco": 18,
       "frete": 5,
       "categoria": "carnes",
-      "descricao": "Quantidade minina: 150 gramas",
+      "informacao": "Quantidade minina: 150 gramas",
       "detalhamento": "Em nossa busca incansável pela excelência culinária, temos o prazer de apresentar a Fraldinha Especial: um verdadeiro tesouro de sabor e suculência. Selecionada cuidadosamente entre as melhores carnes bovinas, nossa fraldinha é uma sinfonia de textura macia e sabor único que surpreenderá todas as suas expectativas. Proveniente da região abdominal do boi, conhecida como fralda, esse corte é uma delícia para os paladares mais exigentes, proporcionando uma experiência gastronômica excepcional e irresistível."
     },
     {
@@ -37,7 +37,7 @@
       "preco": 20,
       "frete": 5,
       "categoria": "carnes",
-      "descricao": "Quantidade minina: 150 gramas",
+      "informacao": "Quantidade minina: 150 gramas",
       "detalhamento": "Com sua textura suculenta e sabor distintivo, o cupim oferece uma experiência gastronômica única. Selecionado com cuidado, esse corte apresenta uma combinação equilibrada de marmoreio e gordura, proporcionando um sabor rico e uma maciez excepcional. Com sua localização privilegiada, o cupim é perfeito para ser assado lentamente, resultando em uma carne macia e suculenta, cheia de aromas e sabores intensos. Delicie-se com o cupim e descubra o prazer de saborear um corte de carne bovina de qualidade, proveniente de uma região especial do animal."
     },
     {
@@ -47,7 +47,7 @@
       "preco": 14,
       "frete": 5,
       "categoria": "carnes",
-      "descricao": "Quantidade minina: 150 gramas",
+      "informacao": "Quantidade minina: 150 gramas",
       "detalhamento": "Com sua textura suculenta e sabor marcante, a picanha suína é uma verdadeira delícia para os apreciadores da carne de porco. Selecionada cuidadosamente, essa carne oferece uma experiência gastronômica única e irresistível. Com seu marmoreio equilibrado e uma camada de gordura que traz suculência e sabor durante o preparo, a picanha suína apresenta um sabor rico e uma maciez inigualável. Permita-se desfrutar dessa iguaria que combina tradição, qualidade e prazer em cada mordida, elevando sua refeição a um patamar excepcional."
     },
     {
@@ -57,7 +57,7 @@
       "preco": 15,
       "frete": 5,
       "categoria": "carnes",
-      "descricao":"Quantidade minina: 150 gramas",
+      "informacao":"Quantidade minina: 150 gramas",
       "detalhamento": "Com sua textura macia e sabor suculento, a maminha é um verdadeiro deleite para os apreciadores de carne. Selecionada criteriosamente, essa peça proporciona uma experiência gastronômica única e encantadora. Com seu equilíbrio perfeito entre marmoreio e magreza, a maminha oferece um sabor rico e uma textura tenra que a tornam ideal para grelhados, assados ou até mesmo para ser fatiada em bifes suculentos. Permita-se desfrutar dessa iguaria que combina qualidade, suculência e sabor, elevando sua refeição a outro nível de prazer culinário."
     },
     {
@@ -67,7 +67,7 @@
       "preco": 8,
       "frete": 5,
       "categoria": "carnes",
-      "descricao": "Quantidade minina: 150 gramas",
+      "informacao": "Quantidade minina: 150 gramas",
       "detalhamento": "Com sua textura tenra e sabor irresistível, as asinhas de frango são um verdadeiro prazer para os amantes de carne. Selecionadas com cuidado, essas porções proporcionam uma experiência gastronômica única e deliciosa. Com seu equilíbrio perfeito entre carne e osso, as asinhas de frango são ideais para serem temperadas, marinadas e assadas, resultando em pedaços suculentos e crocantes. A versatilidade das asinhas de frango permite que sejam preparadas de diversas formas, como grelhadas, fritas, empanadas ou até mesmo cozidas em molhos saborosos. Seja como aperitivo em festas ou como prato principal, as asinhas de frango são sempre uma escolha deliciosa e apreciada por pessoas de todas as idades."
     },
     {
@@ -77,7 +77,7 @@
       "preco": 10,
       "frete": 5,
       "categoria": "carnes",
-      "descricao": "Quantidade minina: 150 gramas",
+      "informacao": "Quantidade minina: 150 gramas",
       "detalhamento": "Com sua textura suculenta e sabor inigualável, a linguiça é um verdadeiro deleite para os apreciadores de carne. Ela é cuidadosamente preparada a partir de cortes selecionados, resultando em uma mistura perfeita de carne e temperos. Sua versatilidade culinária permite que seja preparada de diversas maneiras, como grelhada, frita, assada, cozida ou até mesmo defumada."
     }
   ]

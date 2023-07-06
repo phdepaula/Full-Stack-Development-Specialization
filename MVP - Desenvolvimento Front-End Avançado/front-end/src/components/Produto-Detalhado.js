@@ -62,7 +62,7 @@ export default function ProdutoDetalhado(props) {
             </div>
 
             <div className='Observacao'>
-              <span id='observacao'>{produto.descricao}</span>
+              <span id='observacao'>{produto.informacao}</span>
             </div>
           </div>
 

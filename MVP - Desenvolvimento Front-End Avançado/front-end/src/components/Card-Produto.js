@@ -39,7 +39,7 @@ export default function CardProduto(props) {
 
       <div className='DetalhesProduto'>
         <span id='NomeProduto'>{produto.nome}</span>
-        <span id='DescricaoProduto'>{produto.descricao}</span>
+        <span id='DescricaoProduto'>{produto.informacao}</span>
         <span id='Preco'>R$ {produto.preco}</span>
       </div>
 
