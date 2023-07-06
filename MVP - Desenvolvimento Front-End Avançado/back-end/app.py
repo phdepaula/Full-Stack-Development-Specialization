@@ -2,7 +2,6 @@ from flask import redirect
 from urllib.parse import unquote
 
 import comum
-
 from config_app import *
 from database.model.config_model import session_maker
 from database.model.login import Login
@@ -15,6 +14,7 @@ def documentacao():
   """Redireciona para a rota /openapi, tela que permite a escolha do estilo de documentação."""
   return redirect('/openapi')
 
+
 #API de Login
 @app.post('/autenticar_login', tags = [login_tag],
           responses={'200': RespostaVerificaLoginSchema, '400': RespostaVerificaLoginSchema})
@@ -25,12 +25,12 @@ def autenticar_login(form: VerificaLoginSchema):
     senha = unquote(unquote(form.senha))
 
     session = session_maker()
-    usuario_cadastrado = session.query(Login.usuario).filter(Login.usuario == usuario).first()
+    usuario_cadastrado = comum.consultar_parametro(session, Login.usuario, Login.usuario, usuario)
 
     if usuario_cadastrado == None:
       return {'status': False, 'mensagem': 'Usuário inexistente!'}, 400
     else:
-      senha_cadastrada = session.query(Login.senha).filter(Login.usuario == usuario).first()[0]
+      senha_cadastrada = comum.consultar_parametro(session, Login.senha, Login.usuario, usuario)[0]
 
       if senha == senha_cadastrada:
         return {'status': True, 'usuario': usuario}, 200
@@ -50,13 +50,11 @@ def cadastrar_login(form: VerificaLoginSchema):
     senha = unquote(unquote(form.senha))
     
     session = session_maker()
-    usuario_cadastrado = session.query(Login.usuario).filter(Login.usuario == usuario).first()
+    usuario_cadastrado = comum.consultar_parametro(session, Login.usuario, Login.usuario, usuario)
 
     if usuario_cadastrado == None:
       novo_cadastro_login = Login(usuario = usuario, senha= senha)
-      
-      session.add(novo_cadastro_login)
-      session.commit()
+      Login.cadastrar_login_banco(novo_cadastro_login, session)
 
       return apresentar_cadastro_login(novo_cadastro_login, 'Usuário cadastrado com sucesso!')
     else:

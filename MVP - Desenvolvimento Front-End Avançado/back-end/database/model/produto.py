@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Float, String
 
-from database.model.config_model import Base, session_maker
+from database.model.config_model import Base
 
 
 class Produto(Base):
@@ -28,7 +28,6 @@ class Produto(Base):
     self.destaques = destaques
 
 
-  def cadastrar_produto(self: object) -> None:
-    session = session_maker()
+  def cadastrar_produto_banco(self: object, session) -> None:
     session.add(self)
     session.commit()
