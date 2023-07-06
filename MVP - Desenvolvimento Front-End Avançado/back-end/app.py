@@ -1,10 +1,13 @@
 from flask import redirect
 from urllib.parse import unquote
 
+import comum
+
 from config_app import *
 from database.model.config_model import session_maker
 from database.model.login import Login
 from schemas.login import *
+
 
 # API de documentacao
 @app.get('/', tags = [home_tag])
@@ -13,14 +16,15 @@ def documentacao():
   return redirect('/openapi')
 
 #API de Login
-@app.post('/verificar_login', tags = [login_tag],
+@app.post('/autenticar_login', tags = [login_tag],
           responses={'200': RespostaVerificaLoginSchema, '400': RespostaVerificaLoginSchema})
-def verificar_login(form: VerificaLoginSchema):
+def autenticar_login(form: VerificaLoginSchema):
   """Verifica se os dados de login fornecidos pelo usuário estão corretos."""
   try:
-    session = session_maker()
-    usuario = unquote(unquote(form.usuario)).upper()
+    usuario = comum.tratar_usuario(unquote(unquote(form.usuario)))
     senha = unquote(unquote(form.senha))
+
+    session = session_maker()
     usuario_cadastrado = session.query(Login.usuario).filter(Login.usuario == usuario).first()
 
     if usuario_cadastrado == None:
@@ -29,7 +33,7 @@ def verificar_login(form: VerificaLoginSchema):
       senha_cadastrada = session.query(Login.senha).filter(Login.usuario == usuario).first()[0]
 
       if senha == senha_cadastrada:
-        return {'status': True, 'mensagem': 'Login realizado!'}, 200
+        return {'status': True, 'usuario': usuario}, 200
       else:
         return {'status': False, 'mensagem': 'Senha Incorreta!'}, 400
 
@@ -42,11 +46,10 @@ def verificar_login(form: VerificaLoginSchema):
 def cadastrar_login(form: VerificaLoginSchema):
   """Cadastra um novo item a base de dados de login."""
   try:
-    session = session_maker()
-
-    usuario = unquote(unquote(form.usuario)).upper()
+    usuario = comum.tratar_usuario(unquote(unquote(form.usuario)))
     senha = unquote(unquote(form.senha))
-
+    
+    session = session_maker()
     usuario_cadastrado = session.query(Login.usuario).filter(Login.usuario == usuario).first()
 
     if usuario_cadastrado == None:

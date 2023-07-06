@@ -33,28 +33,56 @@ export default function Login() {
     }
     }
 
-  const autenticar = async (inputUsuario, inputSenha) => {
-    let resposta_api = 'True'
+  const autenticar = async (usuario, senha) => {
+    const formData = new FormData();
+    formData.append('usuario', usuario);
+    formData.append('senha', senha);
 
-    if (resposta_api === 'True'){
-      alert('Login realizado!')
-      Cookies.set('nomeUsuario', inputUsuario);
-      navigate('/')
-    }
-    else {
-      alert('Dados Incorretos!')
-    }
+    let url = 'http://127.0.0.1:5000/autenticar_login';
+    
+    fetch(url, {
+      method: 'post',
+      body: formData
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === true){
+        alert('Login realizado!')
+        Cookies.set('nomeUsuario', data.usuario);
+        navigate('/')
+      }
+      else {
+        alert('Dados incorretos!')
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }
 
-  const criar_conta = async (inputUsuario, inputSenha) => {
-    let resposta_api = 'True'
+  const criar_conta = async (usuario, senha) => {
+    const formData = new FormData();
+    formData.append('usuario', usuario);
+    formData.append('senha', senha);
 
-    if (resposta_api === 'True'){
-      alert('Conta criada com sucesso!')
-    }
-    else {
-      alert('Erro ao criar conta!')
-    }
+    let url = 'http://127.0.0.1:5000/cadastrar_login';
+    
+    fetch(url, {
+      method: 'post',
+      body: formData
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.mensagem === 'Usuário cadastrado com sucesso!'){
+        alert(data.mensagem)
+      }
+      else {
+        alert('Erro ao criar conta!')
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }
   
   let cookieNomeUsuario = Cookies.get('nomeUsuario');

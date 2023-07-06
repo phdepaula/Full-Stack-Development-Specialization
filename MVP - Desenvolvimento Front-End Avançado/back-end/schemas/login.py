@@ -14,7 +14,7 @@ class RespostaVerificaLoginSchema(BaseModel):
   após ser feita uma solitação de login pelo usuário.
   """
   status: bool
-  mensagem: str
+  string: str
 
 
 def apresentar_cadastro_login(dados_cadastro: Login, mensagem):
