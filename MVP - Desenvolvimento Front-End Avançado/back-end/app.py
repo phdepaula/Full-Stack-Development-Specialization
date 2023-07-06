@@ -1,9 +1,8 @@
 from flask import redirect
 from urllib.parse import unquote
 
-import comum
+import lib.comum as comum
 from config_app import *
-from database.model.config_model import session_maker
 from database.model.login import Login
 from schemas.login import *
 
@@ -24,13 +23,12 @@ def autenticar_login(form: VerificaLoginSchema):
     usuario = comum.tratar_usuario(unquote(unquote(form.usuario)))
     senha = unquote(unquote(form.senha))
 
-    session = session_maker()
-    usuario_cadastrado = comum.consultar_parametro(session, Login.usuario, Login.usuario, usuario)
+    usuario_cadastrado = comum.consultar_parametro(Login.usuario, Login.usuario, usuario)
 
     if usuario_cadastrado == None:
       return {'status': False, 'mensagem': 'Usuário inexistente!'}, 400
     else:
-      senha_cadastrada = comum.consultar_parametro(session, Login.senha, Login.usuario, usuario)[0]
+      senha_cadastrada = comum.consultar_parametro(Login.senha, Login.usuario, usuario)[0]
 
       if senha == senha_cadastrada:
         return {'status': True, 'usuario': usuario}, 200
@@ -49,14 +47,13 @@ def cadastrar_login(form: VerificaLoginSchema):
     usuario = comum.tratar_usuario(unquote(unquote(form.usuario)))
     senha = unquote(unquote(form.senha))
     
-    session = session_maker()
-    usuario_cadastrado = comum.consultar_parametro(session, Login.usuario, Login.usuario, usuario)
+    usuario_cadastrado = comum.consultar_parametro(Login.usuario, Login.usuario, usuario)
 
     if usuario_cadastrado == None:
       novo_cadastro_login = Login(usuario = usuario, senha= senha)
-      Login.cadastrar_login_banco(novo_cadastro_login, session)
+      comum.inserir_banco(novo_cadastro_login)
 
-      return apresentar_cadastro_login(novo_cadastro_login, 'Usuário cadastrado com sucesso!')
+      return apresentar_cadastro_login(usuario, senha, 'Usuário cadastrado com sucesso!')
     else:
       return {'status': False, 'mensagem': 'Usuário já existente, tente outro!'}, 400
 

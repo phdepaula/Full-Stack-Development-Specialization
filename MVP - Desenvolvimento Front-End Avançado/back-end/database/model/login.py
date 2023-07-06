@@ -14,8 +14,3 @@ class Login(Base):
   def __init__(self, usuario: str, senha: str) -> None:
     self.usuario = usuario
     self.senha = senha
-
-  
-  def cadastrar_login_banco(self: object, session) -> None:
-    session.add(self)
-    session.commit()

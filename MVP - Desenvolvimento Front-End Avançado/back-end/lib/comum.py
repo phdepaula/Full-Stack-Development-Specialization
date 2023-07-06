@@ -1,3 +1,6 @@
+from database.model.config_model import session_maker
+
+
 def tratar_usuario(usuario):
   palavras = usuario.split(' ')
   quantidade_palavras = int(len(palavras))
@@ -13,7 +16,16 @@ def tratar_usuario(usuario):
   return usuario
 
 
-def consultar_parametro(session, dado_1, dado_2, dado_3):
+def consultar_parametro(dado_1, dado_2, dado_3):
+  session = session_maker()
   parametro_cadastrado = session.query(dado_1).filter(dado_2 == dado_3).first()
+  session.close()
 
   return parametro_cadastrado
+
+  
+def inserir_banco(novo_cadastro):
+  session = session_maker()
+  session.add(novo_cadastro)
+  session.commit()
+  session.close()
