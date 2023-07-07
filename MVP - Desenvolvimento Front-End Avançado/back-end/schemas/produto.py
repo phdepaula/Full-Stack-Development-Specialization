@@ -67,7 +67,7 @@ def listar_produto_modelo(produtos: List[Produto]):
     result.append({
           'id': produto.id_produtos
         , 'nome': produto.nome
-        , 'preco': produto.preco
+        , 'preco': '{:.2f}'.format(produto.preco)
         , 'fornecedor': produto.fornecedor
         , 'categoria': produto.categoria
         , 'informacao': produto.informacao

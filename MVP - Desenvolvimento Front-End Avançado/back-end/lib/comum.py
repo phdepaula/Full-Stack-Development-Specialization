@@ -1,4 +1,5 @@
 from database.config_model import session_maker
+from sqlalchemy import asc
 
 
 def tratar_usuario(usuario):
@@ -31,9 +32,9 @@ def inserir_banco(novo_cadastro):
   session.close()
 
 
-def consultar_dados_gerais_banco(database, coluna, valor):
+def consultar_dados_gerais_banco(database, coluna_filtro, valor, coluna_ordem):
   session = session_maker()
-  tuplas = session.query(database).filter(coluna == valor).all()
+  tuplas = session.query(database).filter(coluna_filtro == valor).order_by(asc(coluna_ordem)).all()
   session.close()
 
   return tuplas

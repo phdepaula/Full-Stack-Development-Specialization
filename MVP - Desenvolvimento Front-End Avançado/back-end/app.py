@@ -72,7 +72,11 @@ def listar_produto(query: BuscaCategoriaProdutoSchema):
   """Lista os produtos cadastradas para uma dada categoria"""
   try:
     categoria = unquote(unquote(query.categoria))
-    produtos = comum.consultar_dados_gerais_banco(Produto, Produto.categoria, categoria)
+
+    if categoria == 'Destaques':
+      produtos = comum.consultar_dados_gerais_banco(Produto, Produto.destaques, 'S', Produto.nome)
+    else:
+      produtos = comum.consultar_dados_gerais_banco(Produto, Produto.categoria, categoria, Produto.nome)
 
     if produtos:
       return listar_produto_modelo(produtos), 200

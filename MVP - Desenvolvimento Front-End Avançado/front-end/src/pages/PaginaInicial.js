@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 import Header from '../components/Header'
 import Navegacao from '../components/Navegacao'
@@ -8,19 +9,25 @@ import Rodape from '../components/Rodape'
 import BannerCarousel from '../components/Banner-Carousel'
 import CardProduto from '../components/Card-Produto'
 
-import produtos from '../produtos.json'
-
 import '../style/produtos.css'
 
 export default function PaginaInicial() {
   const cookieNomeUsuario = Cookies.get('nomeUsuario');
   const navigate = useNavigate();
   
-  const [produtosLista, setProdutosLista] = useState(produtos.produtos);
+  const [produtosLista, setProdutosLista] = useState([]);
   const [categoria, setCategoria] = useState('Destaques');
   const [quantidade, setQuantidade] = useState(0);
   const [valorTotal, setValorTotal] = useState(0);
   const [scrollPosicao, setScrollPosicao] = useState(0);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:5000/listar_produto', {
+      params: {categoria: categoria}
+    })
+      .then(res => setProdutosLista(res.data.produtos))
+      .catch(error => console.log(error))
+  }, [categoria])
 
   const larguratela = window.innerWidth;
   const numeroCards = produtosLista.length;
@@ -62,7 +69,7 @@ export default function PaginaInicial() {
   }
   
   const scrollEsquerda = () => {
-    const novaPosicao = scrollPosicao - 221
+    const novaPosicao = scrollPosicao - 230
 
     if(cardAtual > numeroCardsVisiveis) {
       setCardAtual(cardAtual - 1)
@@ -71,7 +78,7 @@ export default function PaginaInicial() {
   };
 
   const scrollDireita = () => {
-    const novaPosicao = scrollPosicao + 221
+    const novaPosicao = scrollPosicao + 230
 
     if(cardAtual <= numeroCards) {
       setCardAtual(cardAtual + 1)
