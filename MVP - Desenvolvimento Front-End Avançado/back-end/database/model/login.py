@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from database.model.config_model import Base
+from database.config_model import Base
 
 
 class Login(Base):

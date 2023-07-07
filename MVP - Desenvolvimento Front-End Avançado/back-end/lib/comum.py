@@ -1,4 +1,4 @@
-from database.model.config_model import session_maker
+from database.config_model import session_maker
 
 
 def tratar_usuario(usuario):
