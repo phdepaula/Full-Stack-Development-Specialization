@@ -37,3 +37,19 @@ def consultar_dados_gerais_banco(database, coluna, valor):
   session.close()
 
   return tuplas
+
+
+def gerar_id_produto (nome):
+  id_produto = nome.upper().replace(' ', '')
+  caracteres_especiais = { 'Á': 'A'
+                         , 'É': 'E'
+                         , 'Í': 'I'
+                         , 'Ó': 'O'
+                         , 'Ú': 'U'
+                         , 'Ã': 'A' 
+                         , 'Ç': 'C' }
+                        
+  for caracter, novo_caracter in caracteres_especiais.items():
+    id_produto = id_produto.replace(caracter, novo_caracter)
+
+  return id_produto

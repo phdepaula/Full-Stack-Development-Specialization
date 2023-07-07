@@ -17,8 +17,8 @@ class ProdutoSchema(BaseModel):
   destaques: str
 
 
-class BuscaProdutoSchema(BaseModel):
-  """ Defini como a busca será feita pelos produtos.
+class BuscaCategoriaProdutoSchema(BaseModel):
+  """ Defini como a busca por categoria será feita pelos produtos.
   """
   categoria: str
 
@@ -30,9 +30,30 @@ class ListaProdutoSchema(BaseModel):
   produtos: List[ProdutoSchema]
 
 
-class ErroProdutoSchema(BaseModel):
+class ErroListaProdutoSchema(BaseModel):
   """ Defini como a busca será feita pelos produtos.
   """
+  mensagem: str
+
+
+class BuscaNomeProdutoSchema(BaseModel):
+  """ Defini como a busca por nome será feita pelos produtos.
+  """
+  nome: str
+
+
+class BuscaProdutoSchema(BaseModel):
+  """ Define como deve ser a estrutura de resposta para uma busca de um produto
+      com base em seu nome.
+  """
+  status: bool
+  produtos: List[ProdutoSchema]
+
+
+class ErroBuscaProdutoSchema(BaseModel):
+  """ Defini como a busca será feita pelos produtos.
+  """
+  status: bool
   mensagem: str
 
 
@@ -55,3 +76,18 @@ def listar_produto_modelo(produtos: List[Produto]):
     })
 
   return {'produtos': result}
+
+
+def buscar_produto_modelo(produto: Produto):
+  """Define um modelo de resposta para quando for solicitado um produto a base de dados.
+  """
+  result = { 'id': produto.id_produtos
+           , 'nome': produto.nome
+           , 'preco': produto.preco
+           , 'fornecedor': produto.fornecedor
+           , 'categoria': produto.categoria
+           , 'informacao': produto.informacao
+           , 'detalhamento': produto.detalhamento
+           , 'destaques': produto.destaques }
+
+  return {'status': True, 'produto': result}

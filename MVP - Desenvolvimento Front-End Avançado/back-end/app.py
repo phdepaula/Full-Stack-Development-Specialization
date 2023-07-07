@@ -67,8 +67,8 @@ def cadastrar_login(form: VerificaLoginSchema):
 
 #API's de Produto
 @app.get('/listar_produto', tags = [produto_tag],
-        responses={'200': ListaProdutoSchema, '400': ErroProdutoSchema})
-def listar_produto(query: BuscaProdutoSchema):
+        responses={'200': ListaProdutoSchema, '400': ErroListaProdutoSchema})
+def listar_produto(query: BuscaCategoriaProdutoSchema):
   """Lista os produtos cadastradas para uma dada categoria"""
   try:
     categoria = unquote(unquote(query.categoria))
@@ -77,6 +77,22 @@ def listar_produto(query: BuscaProdutoSchema):
     if produtos:
       return listar_produto_modelo(produtos), 200
     else:
-      return {"mensagem": f'Nenhum produto foi encontrado para a categoria {categoria}.'}, 400
+      return {'mensagem': f'Nenhum produto foi encontrado para a categoria {categoria}.'}, 400
   except Exception as e:
-    return {'mensagem': f'ERRO: {e}'}, 400  
+    return {'mensagem': f'ERRO: {e}'}, 400
+
+
+@app.post('/buscar_produto', tags = [produto_tag],
+        responses={'200': BuscaProdutoSchema, '400': ErroBuscaProdutoSchema})
+def buscar_produto(query: BuscaNomeProdutoSchema):
+  """Lista os produtos cadastradas para uma dada categoria"""
+  try:
+    id_produto = comum.gerar_id_produto(unquote(unquote(query.nome)))
+    produto = comum.consultar_parametro(Produto, Produto.id_produtos, id_produto)
+
+    if produto:
+      return buscar_produto_modelo(produto), 200
+    else:
+      return {'status': False, 'mensagem': f'Nenhum produto foi encontrado com o id {id_produto}.'}, 400
+  except Exception as e:
+    return {'status': False, 'mensagem': f'ERRO: {e}'}, 400   
