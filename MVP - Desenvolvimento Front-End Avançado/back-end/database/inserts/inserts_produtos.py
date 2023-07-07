@@ -175,7 +175,7 @@ produtos = [ Produto ( id_produtos = 'picanha'.upper()
                      , categoria = 'Complementos'
                      , informacao = 'Quantidade: 400 G'
                      , detalhamento = 'Experimente a textura macia e o sabor delicado do queijo prato em cada mordida. Com sua consistência cremosa e sabor suave, ele é o complemento ideal para suas receitas e lanches favoritos. Nosso queijo prato é produzido com leite fresco e selecionado, seguindo rigorosos padrões de qualidade para garantir um produto de excelência. Sua textura derrete na boca, proporcionando uma experiência sensorial prazerosa em cada pedaço.'
-                     , destaques = 'S' )
+                     , destaques = 'N' )
            , Produto ( id_produtos = 'presunto'.upper()
                      , nome = 'Presunto'
                      , fornecedor = 'Mercado Local'
@@ -271,7 +271,7 @@ produtos = [ Produto ( id_produtos = 'picanha'.upper()
                      , categoria = 'Verduras'
                      , informacao = 'Quantidade: 1 KG'
                      , detalhamento = 'Se você está em busca de um alimento que seja ao mesmo tempo saudável e delicioso, apresentamos a você o incrível brócolis. Com sua aparência única e sabor característico, essa verdura verde vibrante é um verdadeiro tesouro nutricional que pode transformar sua alimentação e impulsionar sua saúde. Originário da região do Mediterrâneo, o brócolis tem conquistado o paladar de pessoas em todo o mundo devido à sua combinação única de sabor e valor nutritivo. Rico em fibras, vitaminas e minerais essenciais, ele é um verdadeiro superalimento que merece um lugar especial em sua dieta.'
-                     , destaques = 'S' )
+                     , destaques = 'N' )
            , Produto ( id_produtos = 'cebola'.upper()
                      , nome = 'Cebola'
                      , fornecedor = 'Mercado da Cidade'
