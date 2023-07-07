@@ -29,3 +29,11 @@ def inserir_banco(novo_cadastro):
   session.add(novo_cadastro)
   session.commit()
   session.close()
+
+
+def consultar_dados_gerais_banco(database, coluna, valor):
+  session = session_maker()
+  tuplas = session.query(database).filter(coluna == valor).all()
+  session.close()
+
+  return tuplas

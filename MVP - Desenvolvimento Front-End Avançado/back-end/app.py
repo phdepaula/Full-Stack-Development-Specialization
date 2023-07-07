@@ -3,8 +3,12 @@ from urllib.parse import unquote
 
 import lib.comum as comum
 from config_app import *
+
 from database.model.login import Login
+from database.model.produto import Produto
+
 from schemas.login import *
+from schemas.produto import *
 
 
 # API de documentacao
@@ -14,7 +18,7 @@ def documentacao():
   return redirect('/openapi')
 
 
-#API de Login
+#API's de Login
 @app.post('/autenticar_login', tags = [login_tag],
           responses={'200': RespostaVerificaLoginSchema, '400': RespostaVerificaLoginSchema})
 def autenticar_login(form: VerificaLoginSchema):
@@ -59,3 +63,20 @@ def cadastrar_login(form: VerificaLoginSchema):
 
   except Exception as e:
     return {'status': False, 'mensagem': f'ERRO: {e}'}, 400
+  
+
+#API's de Produto
+@app.get('/listar_produto', tags = [produto_tag],
+        responses={'200': ListaProdutoSchema, '400': ErroProdutoSchema})
+def listar_produto(query: BuscaProdutoSchema):
+  """Lista os produtos cadastradas para uma dada categoria"""
+  try:
+    categoria = unquote(unquote(query.categoria))
+    produtos = comum.consultar_dados_gerais_banco(Produto, Produto.categoria, categoria)
+
+    if produtos:
+      return listar_produto_modelo(produtos), 200
+    else:
+      return {"mensagem": f'Nenhum produto foi encontrado para a categoria {categoria}.'}, 400
+  except Exception as e:
+    return {'mensagem': f'ERRO: {e}'}, 400  

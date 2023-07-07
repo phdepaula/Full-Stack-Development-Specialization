@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Numeric, String
+from sqlalchemy import Column, Float, String
 from decimal import Decimal
 
 from database.config_model import Base
@@ -9,7 +9,7 @@ class Produto(Base):
 
   id_produtos = Column('id', String(30), primary_key=True)
   nome = Column(String(30))
-  preco = Column(Numeric(precision = 4, scale = 2), default = Decimal('0.00'))
+  preco = Column(Float)
   fornecedor = Column(String(100))
   categoria = Column(String(20))
   informacao = Column(String(200))

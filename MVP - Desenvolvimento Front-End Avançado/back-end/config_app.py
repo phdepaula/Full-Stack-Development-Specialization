@@ -10,3 +10,4 @@ CORS(app)
 # Definindo Tags
 home_tag = Tag(name="Documentação", description="Seleção de documentação: Swagger, Redoc ou RapiDoc.")
 login_tag = Tag(name="Login", description="Controle dos dados de Login do Mercado.")
+produto_tag = Tag(name="Produtos", description="Controle dos produtos vendidos pelo Mercado.")
