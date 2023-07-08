@@ -4,6 +4,7 @@ from sqlalchemy_utils import database_exists, create_database
 from database.config_model import Base, engine, session_maker
 from database.model.login import Login
 from database.model.produto import Produto
+from database.model.carrinho import Carrinho
 from database.inserts.inserts_produtos import produtos
 
 dir_database = os.path.join(os.getcwd(), 'database', 'database-file')
