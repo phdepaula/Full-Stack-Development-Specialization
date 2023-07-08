@@ -1,5 +1,4 @@
 from sqlalchemy import Column, Float, String
-from decimal import Decimal
 
 from database.config_model import Base
 
