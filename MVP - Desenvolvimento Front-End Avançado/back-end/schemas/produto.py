@@ -30,7 +30,7 @@ class ListaProdutoSchema(BaseModel):
   produtos: List[ProdutoSchema]
 
 
-class ErroListaProdutoSchema(BaseModel):
+class ListaProdutoSchemaMensagem(BaseModel):
   """ Defini como a busca será feita pelos produtos.
   """
   mensagem: str
@@ -50,7 +50,7 @@ class BuscaProdutoSchema(BaseModel):
   produtos: List[ProdutoSchema]
 
 
-class ErroBuscaProdutoSchema(BaseModel):
+class BuscaProdutoSchemaMensagem(BaseModel):
   """ Defini como a busca será feita pelos produtos.
   """
   status: bool
