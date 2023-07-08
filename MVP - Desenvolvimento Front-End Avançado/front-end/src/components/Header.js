@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 import Logo from './Logo'
 import lupa from '../assets/general/lupa.svg'
@@ -13,7 +14,7 @@ import existe_produto from '../existe_produto.json'
 export default function Header(props) {
   const cookieNomeUsuario = Cookies.get('nomeUsuario');
   const navigate = useNavigate();
-  const status_produto = existe_produto.status
+  const [nomeProduto, setNomeProduto] = useState('');
   
   const quantidade = props.quantidade;
   const comprar = props.comprar;
@@ -49,17 +50,29 @@ export default function Header(props) {
     }
   }
 
-  function pesquisar() {
+  async function pesquisar() {
+   try {
     let pesquisa = document.getElementById('barra-busca').value;
 
-    if(pesquisa.trim().length === 0) {
-      alert('Favor digitar o nome produto!')
-    } else if (status_produto) {
-      navigate('/produto/' + pesquisa)
+    const formData = new FormData();
+    formData.append('nome', pesquisa);
+
+    let url = 'http://127.0.0.1:5000/buscar_produto'
+    const response = await axios.post(url, formData);
+    const data = response.data;
+
+    if (pesquisa.trim().length === 0) {
+      alert('Favor digitar o nome do produto!');
+    } else if (data.status === true) {
+      navigate('/produto/' + data.produto.nome)
     } else {
       alert('O produto nao existe!')
     }
+   } catch (error) {
+    console.error('Error: ', error)
+   }
   }
+  
 
   const [clickCarrinho, setClickCarrinho] = useState(false);
   const carrinhoArea = useRef(null);

@@ -88,10 +88,10 @@ def listar_produto(query: BuscaCategoriaProdutoSchema):
 
 @app.post('/buscar_produto', tags = [produto_tag],
         responses={'200': BuscaProdutoSchema, '400': ErroBuscaProdutoSchema})
-def buscar_produto(query: BuscaNomeProdutoSchema):
+def buscar_produto(form: BuscaNomeProdutoSchema):
   """Lista os produtos cadastradas para uma dada categoria"""
   try:
-    id_produto = comum.gerar_id_produto(unquote(unquote(query.nome)))
+    id_produto = comum.gerar_id_produto(unquote(unquote(form.nome)))
     produto = comum.consultar_parametro(Produto, Produto.id_produtos, id_produto)
 
     if produto:
