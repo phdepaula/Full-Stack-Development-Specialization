@@ -83,7 +83,7 @@ def buscar_produto_modelo(produto: Produto):
   """
   result = { 'id': produto.id_produtos
            , 'nome': produto.nome
-           , 'preco': produto.preco
+           , 'preco': '{:.2f}'.format(produto.preco)
            , 'fornecedor': produto.fornecedor
            , 'categoria': produto.categoria
            , 'informacao': produto.informacao
