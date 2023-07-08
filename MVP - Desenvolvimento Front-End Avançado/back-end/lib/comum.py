@@ -65,9 +65,32 @@ def definir_secao():
   id_secao = f'secao_{datetime.now()}'
 
 
-def somar_valores_coluna(coluna_soma, coluna_1, valor_1):
+def obter_valor_total(coluna_soma, coluna_1, valor_1):
   session = session_maker()
   valor_total = session.query(func.sum(coluna_soma)).filter(coluna_1 == valor_1).scalar()
   session.close()
 
   return 0 if valor_total == None else valor_total
+
+
+def somar_condicional(coluna_soma, coluna_1, valor_1, coluna_2, valor_2):
+  session = session_maker()
+  valor_total = session.query(func.sum(coluna_soma)).filter(coluna_1 == valor_1, coluna_2 == valor_2).scalar()
+  session.close()
+
+  return 0 if valor_total == None else valor_total
+
+
+def atualizar_banco(database, coluna_1, valor_1, coluna_2, valor_2, coluna_update, novo_valor):
+  session = session_maker()
+  session.query(database).filter(coluna_1 == valor_1, coluna_2 == valor_2).update({coluna_update: novo_valor})
+  session.commit()
+  session.close()
+
+
+def consultar_parametro_secao(coluna_procurada, coluna_1, valor_1, coluna_2, valor_2):
+  session = session_maker()
+  parametro_cadastrado = session.query(coluna_procurada).filter(coluna_1 == valor_1, coluna_2 == valor_2).first()
+  session.close()
+
+  return parametro_cadastrado
