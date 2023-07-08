@@ -7,7 +7,6 @@ class CadastroCarrinhoSchema(BaseModel):
   produto: str
   quantidade: str
   preco: str
-  status_compra: str
 
 
 class MensagemCarrinhoSchema(BaseModel):

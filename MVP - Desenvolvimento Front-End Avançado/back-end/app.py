@@ -114,7 +114,7 @@ def inserir_compra(form: CadastroCarrinhoSchema):
     produto = unquote(unquote(form.produto))
     quantidade_informada = int(unquote(unquote(form.quantidade)))
     preco_informado = round(float(unquote(unquote(form.preco))), 2)
-    status_compra = unquote(unquote(form.status_compra))
+    status_compra = 'Em andamento'
 
     compra_cadastrada = comum.consultar_parametro_secao(Carrinho.produto, Carrinho.produto, produto, Carrinho.secao, comum.id_secao)
 
@@ -178,4 +178,19 @@ def cancelar_compra(form: CancelaCarrinhoSchema):
       
     return apresentar_atualizacao(produto_cancelado, nova_quantidade, novo_preco, 'Banco atualizado!'), 200
   except Exception as e:
-    return {'mensagem': f'ERRO: {e}'}, 400 
+    return {'mensagem': f'ERRO: {e}'}, 400
+  
+
+@app.put('/finalizar_carrinho', tags = [carrinho_tag],
+          responses={'200': MensagemCarrinhoSchema, '400': MensagemCarrinhoSchema})
+def finalizar_carrinho():
+  """Finaliza as compras inseridas no carrinho na seção atual."""
+  try:
+    secao_atual = comum.id_secao
+
+    comum.atualizar_banco(Carrinho, Carrinho.status_compra, 'Em andamento', Carrinho.secao, secao_atual, Carrinho.status_compra, 'Finalizada')
+    comum.definir_secao()
+
+    return {'mensagem': f'Seção finalizada!'}, 200
+  except Exception as e:
+    return {'mensagem': f'ERRO: {e}'}, 400
