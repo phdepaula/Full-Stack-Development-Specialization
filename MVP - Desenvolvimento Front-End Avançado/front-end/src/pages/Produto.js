@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios'
 
 import Header from '../components/Header'
 import Navegacao from '../components/Navegacao'
@@ -8,8 +9,6 @@ import Rodape from '../components/Rodape'
 import ProdutoDetalhado from '../components/Produto-Detalhado';
 import CardProduto from '../components/Card-Produto'
 
-import produtos from '../produtos.json'
-import existe_produto from '../existe_produto.json'
 import '../style/produtos.css'
 
 import PaginaNaoEncontrada from './PaginaNaoEncontrada';
@@ -17,20 +16,49 @@ import PaginaNaoEncontrada from './PaginaNaoEncontrada';
 export default function PaginaInicial() {
   const cookieNomeUsuario = Cookies.get('nomeUsuario');
   const { nome } = useParams();
-  const status_produto = existe_produto.status
   const navigate = useNavigate();
-  
-  const [produtosLista, setProdutosLista] = useState(produtos.produtos);
+  const [produtosLista, setProdutosLista] = useState([]);
   const [categoria, setCategoria] = useState('Destaques');
   const [quantidade, setQuantidade] = useState(0);
   const [valorTotal, setValorTotal] = useState(0);
   const [scrollPosicao, setScrollPosicao] = useState(0);
-
+  const [statusProduto, setStatusProduto] = useState(false);
+  const [dadosProduto, setDadosProduto] = useState([]);
   const larguratela = window.innerWidth;
   const numeroCards = produtosLista.length;
   const numeroCardsVisiveis = Math.round((larguratela/(221)));
   let [cardAtual, setCardAtual] = useState(numeroCardsVisiveis)
 
+  useEffect(() => {
+    axios.get('http://127.0.0.1:5000/listar_produto', {
+      params: {categoria: categoria}
+    })
+      .then(res => setProdutosLista(res.data.produtos))
+      .catch(error => console.log(error))
+  }, [categoria])
+
+  useEffect(() => {
+    const buscarProduto = async () => {
+      try {
+        const formData = new FormData();
+        formData.append('nome', nome);
+  
+        let url = 'http://127.0.0.1:5000/buscar_produto';
+        const response = await axios.post(url, formData);
+        const data = response.data;
+  
+        if (data.status === true) {
+          setStatusProduto(true)
+          setDadosProduto(data.produto)
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+  
+    buscarProduto();
+  }, [nome]);
+  
   const tipoCategoria = (infoCategoria) => {
     setCategoria(infoCategoria)
   }
@@ -80,7 +108,7 @@ export default function PaginaInicial() {
   }
   
   const scrollEsquerda = () => {
-    const novaPosicao = scrollPosicao - 221
+    const novaPosicao = scrollPosicao - 230
 
     if(cardAtual > numeroCardsVisiveis) {
       setCardAtual(cardAtual - 1)
@@ -89,7 +117,7 @@ export default function PaginaInicial() {
   };
 
   const scrollDireita = () => {
-    const novaPosicao = scrollPosicao + 221
+    const novaPosicao = scrollPosicao + 230
 
     if(cardAtual <= numeroCards) {
       setCardAtual(cardAtual + 1)
@@ -98,7 +126,7 @@ export default function PaginaInicial() {
   }
 
   return (
-    status_produto === false ? <PaginaNaoEncontrada/>:
+    statusProduto.status === false ? <PaginaNaoEncontrada/>:
     <div className='Page'>
       <header>
         <div className='Topo'>
@@ -121,7 +149,7 @@ export default function PaginaInicial() {
           </div>
 
           <div className='ProdutosDetalhados'>
-            <ProdutoDetalhado produto={existe_produto} quantidadeCompras={quantidadeCompras} cancelarPagamento={cancelarPagamento}/>
+            <ProdutoDetalhado produto={dadosProduto} quantidadeCompras={quantidadeCompras} cancelarPagamento={cancelarPagamento}/>
           </div>
 
           <div className='TituloCards'>

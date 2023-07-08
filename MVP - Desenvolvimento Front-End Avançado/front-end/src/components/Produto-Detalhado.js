@@ -5,7 +5,7 @@ import adicionar from '../assets/general/mais.svg'
 import remover from '../assets/general/menos.svg'
 
 export default function ProdutoDetalhado(props) {
-  const produto = props.produto.produto
+  const produto = props.produto
   const compras = props.quantidadeCompras;
   const cancelarPagamento = props.cancelarPagamento
   const imagem = imagensProdutos[produto.id]
