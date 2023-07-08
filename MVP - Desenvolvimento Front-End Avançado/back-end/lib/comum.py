@@ -65,9 +65,9 @@ def definir_secao():
   id_secao = f'secao_{datetime.now()}'
 
 
-def somar_valores_coluna(coluna_soma, coluna_1, valor_1, coluna_2, valor_2):
+def somar_valores_coluna(coluna_soma, coluna_1, valor_1):
   session = session_maker()
-  valor_total = session.query(func.sum(coluna_soma)).filter(coluna_1 == valor_1, coluna_2 == valor_2).scalar()
+  valor_total = session.query(func.sum(coluna_soma)).filter(coluna_1 == valor_1).scalar()
   session.close()
 
   return 0 if valor_total == None else valor_total

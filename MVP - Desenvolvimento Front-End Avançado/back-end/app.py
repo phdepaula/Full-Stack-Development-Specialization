@@ -134,14 +134,9 @@ def inserir_carrinho(form: CadastroCarrinhoSchema):
 def obter_dados_carrinho():
   """Obtem a quantidade e o preço acumulado no carrinho para a seção atual"""
   try:
-    quantidade_adicionada = int(comum.somar_valores_coluna(Carrinho.quantidade, Carrinho.status_compra, 'Adicionada', Carrinho.secao, comum.id_secao))
-    quantidade_cancelada = int(comum.somar_valores_coluna(Carrinho.quantidade, Carrinho.status_compra, 'Cancelada', Carrinho.secao, comum.id_secao))
-    quantidade_total = int(quantidade_adicionada - quantidade_cancelada)
+    quantidade_total = int(comum.somar_valores_coluna(Carrinho.quantidade, Carrinho.secao, comum.id_secao))
+    preco_total = round(float(comum.somar_valores_coluna(Carrinho.preco, Carrinho.secao, comum.id_secao)), 2)
 
-    preço_adicionado = float(comum.somar_valores_coluna(Carrinho.preco, Carrinho.status_compra, 'Adicionada', Carrinho.secao, comum.id_secao))
-    preco_cancelado = float(comum.somar_valores_coluna(Carrinho.preco, Carrinho.status_compra, 'Cancelada', Carrinho.secao, comum.id_secao))
-    preco_total = round(float(preço_adicionado - preco_cancelado), 2)
-
-    return {'quantidade': quantidade_total, 'preco': preco_total }, 200
+    return {'quantidade': quantidade_total, 'preco': '{:.2f}'.format(preco_total) }, 200
   except Exception as e:
     return {'mensagem': f'ERRO: {e}'}, 400
