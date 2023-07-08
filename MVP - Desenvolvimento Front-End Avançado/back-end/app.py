@@ -6,9 +6,11 @@ from config_app import *
 
 from database.model.login import Login
 from database.model.produto import Produto
+from database.model.carrinho import Carrinho
 
 from schemas.login import *
 from schemas.produto import *
+from schemas.carrinho import *
 
 
 # API de documentacao
@@ -99,4 +101,31 @@ def buscar_produto(form: BuscaNomeProdutoSchema):
     else:
       return {'status': False, 'mensagem': f'Nenhum produto foi encontrado com o id {id_produto}.'}, 201
   except Exception as e:
-    return {'status': False, 'mensagem': f'ERRO: {e}'}, 400   
+    return {'status': False, 'mensagem': f'ERRO: {e}'}, 400
+  
+
+  #API's do Carrinho
+@app.post('/inserir_carrinho', tags = [carrinho_tag],
+          responses={'200': MensagemCadastroCarrinhoSchema, '400': MensagemCadastroCarrinhoSchema})
+def inserir_carrinho(form: CadastroCarrinhoSchema):
+  """Cadastra um novo item a base de dados de Carrinho."""
+  try:
+    usuario = unquote(unquote(form.usuario))
+    produto = unquote(unquote(form.produto))
+    quantidade = int(unquote(unquote(form.quantidade)))
+    preco = round(float(unquote(unquote(form.preco))), 2)
+    status_compra = unquote(unquote(form.status_compra))
+    status_secao = unquote(unquote(form.status_secao))
+
+    novo_cadastro_carrinho = Carrinho( secao = comum.id_secao
+                                     , usuario = usuario
+                                     , produto = produto
+                                     , quantidade = quantidade
+                                     , preco = preco
+                                     , status_compra = status_compra
+                                     , status_secao = status_secao )
+    comum.inserir_banco(novo_cadastro_carrinho)
+
+    return {'mensagem': 'Item adicionado ao carrinho com sucesso!'}, 200
+  except Exception as e:
+    return {'mensagem': f'ERRO: {e}'}, 400

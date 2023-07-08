@@ -1,5 +1,8 @@
 from database.config_model import session_maker
 from sqlalchemy import asc
+from datetime import datetime
+
+global id_secao
 
 
 def tratar_usuario(usuario):
@@ -54,3 +57,9 @@ def gerar_id_produto (nome):
     id_produto = id_produto.replace(caracter, novo_caracter)
 
   return id_produto
+
+
+def definir_secao():
+  global id_secao
+  
+  id_secao = f'secao_{datetime.now()}'
