@@ -8,19 +8,16 @@ import lupa from '../assets/general/lupa.svg'
 import setaLogin from '../assets/general/seta-para-baixo.svg'
 import carrinho from '../assets/general/carrinho.svg';
 
-import produtos from '../produtos.json'
-import existe_produto from '../existe_produto.json'
 
 export default function Header(props) {
   const cookieNomeUsuario = Cookies.get('nomeUsuario');
   const navigate = useNavigate();
-  const [nomeProduto, setNomeProduto] = useState('');
-  
   const quantidade = props.quantidade;
   const comprar = props.comprar;
- 
   const [clickLogin, setClickLogin] = useState(false);
   const loginArea = useRef(null);
+  const [clickCarrinho, setClickCarrinho] = useState(false);
+  const carrinhoArea = useRef(null);
  
   function mostrarDivLogin() {
     setClickLogin(!clickLogin);
@@ -57,26 +54,24 @@ export default function Header(props) {
     const formData = new FormData();
     formData.append('nome', pesquisa);
 
-    let url = 'http://127.0.0.1:5000/buscar_produto'
-    const response = await axios.post(url, formData);
-    const data = response.data;
-
     if (pesquisa.trim().length === 0) {
       alert('Favor digitar o nome do produto!');
-    } else if (data.status === true) {
-      navigate('/produto/' + data.produto.nome)
     } else {
-      alert('O produto nao existe!')
-    }
+      let url = 'http://127.0.0.1:5000/buscar_produto'
+      const response = await axios.post(url, formData);
+      const data = response.data;
+
+      if (data.status === true) {
+        navigate('/produto/' + data.produto.nome)
+      } else {
+        alert('O produto nao existe!')
+      }
+    } 
    } catch (error) {
     console.error('Error: ', error)
    }
   }
   
-
-  const [clickCarrinho, setClickCarrinho] = useState(false);
-  const carrinhoArea = useRef(null);
-
   function mostrarDivCarrinho() {
     setClickCarrinho(!clickLogin);
   }
