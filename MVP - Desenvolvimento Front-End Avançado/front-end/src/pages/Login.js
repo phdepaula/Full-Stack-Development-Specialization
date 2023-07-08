@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 import Logo from '../components/Logo'
 import login from '../assets/general/login.svg'
@@ -9,6 +10,7 @@ import '../style/login.css';
 
 export default function Login() {
   const navigate = useNavigate();
+  let cookieNomeUsuario = Cookies.get('nomeUsuario');
 
   useEffect(() => {
     const cookieNomeUsuario = Cookies.get('nomeUsuario');
@@ -33,60 +35,48 @@ export default function Login() {
     }
     }
 
-  const autenticar = async (usuario, senha) => {
-    const formData = new FormData();
-    formData.append('usuario', usuario);
-    formData.append('senha', senha);
-
-    let url = 'http://127.0.0.1:5000/autenticar_login';
+    const autenticar = async (usuario, senha) => {
+      try {
+        const formData = new FormData();
+        formData.append('usuario', usuario);
+        formData.append('senha', senha);
     
-    fetch(url, {
-      method: 'post',
-      body: formData
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.status === true){
-        alert('Login realizado!')
-        Cookies.set('nomeUsuario', data.usuario);
-        navigate('/')
-      }
-      else {
-        alert('Dados incorretos!')
-      }
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  }
+        let url = 'http://127.0.0.1:5000/autenticar_login';
+        const response = await axios.post(url, formData);
+        const data = response.data;
 
-  const criar_conta = async (usuario, senha) => {
-    const formData = new FormData();
-    formData.append('usuario', usuario);
-    formData.append('senha', senha);
-
-    let url = 'http://127.0.0.1:5000/cadastrar_login';
+        if (data.status === true) {
+          alert('Login realizado!');
+          Cookies.set('nomeUsuario', data.usuario);
+          navigate('/');
+        } else {
+          alert(data.mensagem);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
     
-    fetch(url, {
-      method: 'post',
-      body: formData
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.mensagem === 'Usuário cadastrado com sucesso!'){
-        alert(data.mensagem)
-      }
-      else {
-        alert('Erro ao criar conta!')
-      }
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  }
-  
-  let cookieNomeUsuario = Cookies.get('nomeUsuario');
+    const criar_conta = async (usuario, senha) => {
+      try {
+        const formData = new FormData();
+        formData.append('usuario', usuario);
+        formData.append('senha', senha);
+    
+        let url = 'http://127.0.0.1:5000/cadastrar_login';
+        const response = await axios.post(url, formData);
+        const data = response.data;
 
+        if (data.mensagem === 'Usuário cadastrado com sucesso!') {
+          alert(data.mensagem);
+        } else {
+          alert(data.mensagem);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+    
   return (
     <div>
       {cookieNomeUsuario ? (

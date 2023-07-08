@@ -30,14 +30,14 @@ def autenticar_login(form: VerificaLoginSchema):
     usuario_cadastrado = comum.consultar_parametro(Login.usuario, Login.usuario, usuario)
 
     if usuario_cadastrado == None:
-      return {'status': False, 'mensagem': 'Usuário inexistente!'}, 400
+      return {'status': False, 'mensagem': 'Usuário inexistente!'}, 200
     else:
       senha_cadastrada = comum.consultar_parametro(Login.senha, Login.usuario, usuario)[0]
 
       if senha == senha_cadastrada:
         return {'status': True, 'usuario': usuario}, 200
       else:
-        return {'status': False, 'mensagem': 'Senha Incorreta!'}, 201
+        return {'status': False, 'mensagem': 'Senha Incorreta!'}, 200
 
   except Exception as e:
     return {'status': False, 'mensagem': f'ERRO: {e}'}, 400
@@ -57,9 +57,9 @@ def cadastrar_login(form: VerificaLoginSchema):
       novo_cadastro_login = Login(usuario = usuario, senha= senha)
       comum.inserir_banco(novo_cadastro_login)
 
-      return apresentar_cadastro_login(usuario, senha, 'Usuário cadastrado com sucesso!')
+      return apresentar_cadastro_login(usuario, senha, 'Usuário cadastrado com sucesso!'), 200
     else:
-      return {'status': False, 'mensagem': 'Usuário já existente, tente outro!'}, 201
+      return {'status': False, 'mensagem': 'Usuário já existente, tente outro!'}, 200
 
   except Exception as e:
     return {'status': False, 'mensagem': f'ERRO: {e}'}, 400
