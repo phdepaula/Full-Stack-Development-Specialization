@@ -8,10 +8,16 @@ class CadastroCarrinhoSchema(BaseModel):
   quantidade: str
   preco: str
   status_compra: str
-  status_secao:str
 
 
-class MensagemCadastroCarrinhoSchema(BaseModel):
+class MensagemCarrinhoSchema(BaseModel):
   """ Define como uma mensagem de aviso deve ser enviada após o cadastro na base de dados de Carrinho.
   """
   mensagem: str
+
+
+class DadosCarrinho(BaseModel):
+  """ Define como a quantidade e o preco total acumulado no carrinho será retornado
+  """
+  quantidade: int
+  preco: float

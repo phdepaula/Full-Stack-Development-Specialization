@@ -16,16 +16,14 @@ class Carrinho(Base):
   quantidade = Column(Integer, nullable=False )
   preco = Column(Float, nullable=False)
   status_compra = Column(String(20), nullable=False)
-  status_secao = Column(String(20), nullable=False)
 
 
   def __init__( self, secao: str, usuario: str, produto:str, quantidade: int, preco: float
-              , status_compra: str, status_secao: str, data: Union[Date, None] = None ) -> None:
+              , status_compra: str, data: Union[Date, None] = None ) -> None:
     self.secao = secao
     self.usuario = usuario
     self.produto = produto
     self.quantidade = quantidade
     self.preco = preco
     self.status_compra = status_compra
-    self.status_secao = status_secao
     self.data = data

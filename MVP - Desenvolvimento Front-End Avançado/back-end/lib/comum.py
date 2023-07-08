@@ -1,5 +1,5 @@
 from database.config_model import session_maker
-from sqlalchemy import asc
+from sqlalchemy import asc, func
 from datetime import datetime
 
 global id_secao
@@ -63,3 +63,11 @@ def definir_secao():
   global id_secao
   
   id_secao = f'secao_{datetime.now()}'
+
+
+def somar_valores_coluna(coluna_soma, coluna_1, valor_1, coluna_2, valor_2):
+  session = session_maker()
+  valor_total = session.query(func.sum(coluna_soma)).filter(coluna_1 == valor_1, coluna_2 == valor_2).scalar()
+  session.close()
+
+  return 0 if valor_total == None else valor_total

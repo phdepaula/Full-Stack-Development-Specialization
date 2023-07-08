@@ -106,7 +106,7 @@ def buscar_produto(form: BuscaNomeProdutoSchema):
 
   #API's do Carrinho
 @app.post('/inserir_carrinho', tags = [carrinho_tag],
-          responses={'200': MensagemCadastroCarrinhoSchema, '400': MensagemCadastroCarrinhoSchema})
+          responses={'200': MensagemCarrinhoSchema, '400': MensagemCarrinhoSchema})
 def inserir_carrinho(form: CadastroCarrinhoSchema):
   """Cadastra um novo item a base de dados de Carrinho."""
   try:
@@ -115,17 +115,33 @@ def inserir_carrinho(form: CadastroCarrinhoSchema):
     quantidade = int(unquote(unquote(form.quantidade)))
     preco = round(float(unquote(unquote(form.preco))), 2)
     status_compra = unquote(unquote(form.status_compra))
-    status_secao = unquote(unquote(form.status_secao))
 
     novo_cadastro_carrinho = Carrinho( secao = comum.id_secao
                                      , usuario = usuario
                                      , produto = produto
                                      , quantidade = quantidade
                                      , preco = preco
-                                     , status_compra = status_compra
-                                     , status_secao = status_secao )
+                                     , status_compra = status_compra )
     comum.inserir_banco(novo_cadastro_carrinho)
 
     return {'mensagem': 'Item adicionado ao carrinho com sucesso!'}, 200
+  except Exception as e:
+    return {'mensagem': f'ERRO: {e}'}, 400
+  
+
+@app.post('/obter_dados_carrinho', tags = [carrinho_tag],
+          responses={'200': MensagemCarrinhoSchema, '400': MensagemCarrinhoSchema})
+def obter_dados_carrinho():
+  """Obtem a quantidade e o preço acumulado no carrinho para a seção atual"""
+  try:
+    quantidade_adicionada = int(comum.somar_valores_coluna(Carrinho.quantidade, Carrinho.status_compra, 'Adicionada', Carrinho.secao, comum.id_secao))
+    quantidade_cancelada = int(comum.somar_valores_coluna(Carrinho.quantidade, Carrinho.status_compra, 'Cancelada', Carrinho.secao, comum.id_secao))
+    quantidade_total = int(quantidade_adicionada - quantidade_cancelada)
+
+    preço_adicionado = float(comum.somar_valores_coluna(Carrinho.preco, Carrinho.status_compra, 'Adicionada', Carrinho.secao, comum.id_secao))
+    preco_cancelado = float(comum.somar_valores_coluna(Carrinho.preco, Carrinho.status_compra, 'Cancelada', Carrinho.secao, comum.id_secao))
+    preco_total = round(float(preço_adicionado - preco_cancelado), 2)
+
+    return {'quantidade': quantidade_total, 'preco': preco_total }, 200
   except Exception as e:
     return {'mensagem': f'ERRO: {e}'}, 400
