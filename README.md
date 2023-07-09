@@ -6,7 +6,7 @@ Projetos desenvolvidos para a pós graduação/especialização realizada em Des
 * **Sprint 2:** Desenvolvimento Front-End Avançado
 * **Sprint 3:** Desenvolvimento Back-End Avançado
 
-**Para mais informações:** [Ementa PUC RIO](>>https://especializacao.ccec.puc-rio.br/especializacao/desenvolvimento-full-stack).
+**Para mais informações:** [Ementa PUC RIO](https://especializacao.ccec.puc-rio.br/especializacao/desenvolvimento-full-stack).
 
 ## 🪪 **Dados Pessoais**
 
