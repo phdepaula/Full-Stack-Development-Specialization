@@ -4,7 +4,7 @@ Projeto desenvolvido para a segunda sprint de Desenvolvimento Front-End Avançad
 
 ## 🛒 **Mercado Online**
 
-O MVP consiste em um sistema web de um mercado online onde os usuários podem fazer login, explorar produtos e compra-los. O sistema oferece recursos básicos, como autenticação de usuário, navegação por produtos e funcionalidade de carrinho de compras.
+O MVP consiste em uma aplicação web de um mercado online onde os usuários podem fazer login, explorar e comprar produtos. O sistema oferece recursos básicos, como autenticação de usuário, navegação por produtos e funcionalidade de carrinho de compras.
 
 ### 📁 **Diretórios do projeto**
   * **Back-end:** Diretório com todas as especificações das API's desenvolvidas para o projeto.
