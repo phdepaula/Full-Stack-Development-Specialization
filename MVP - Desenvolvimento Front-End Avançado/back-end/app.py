@@ -71,7 +71,7 @@ def cadastrar_login(form: VerificaLoginSchema):
 @app.get('/listar_produto', tags = [produto_tag],
         responses={'200': ListaProdutoSchema, '201': ListaProdutoSchemaMensagem, '400': ListaProdutoSchemaMensagem})
 def listar_produto(query: BuscaCategoriaProdutoSchema):
-  """Lista os produtos cadastradas para uma dada categoria"""
+  """Lista os produtos cadastradas para uma dada categoria."""
   try:
     categoria = unquote(unquote(query.categoria))
 
@@ -91,7 +91,7 @@ def listar_produto(query: BuscaCategoriaProdutoSchema):
 @app.post('/buscar_produto', tags = [produto_tag],
         responses={'200': BuscaProdutoSchema, '201': BuscaProdutoSchemaMensagem, '400': BuscaProdutoSchemaMensagem})
 def buscar_produto(form: BuscaNomeProdutoSchema):
-  """Lista os produtos cadastradas para uma dada categoria"""
+  """Busca um produto com base no nome fornecido."""
   try:
     id_produto = comum.gerar_id_produto(unquote(unquote(form.nome)))
     produto = comum.consultar_parametro(Produto, Produto.id_produtos, id_produto)
@@ -108,7 +108,7 @@ def buscar_produto(form: BuscaNomeProdutoSchema):
 @app.post('/inserir_compra', tags = [carrinho_tag],
           responses={'200': MensagemCarrinhoSchema, '400': MensagemCarrinhoSchema})
 def inserir_compra(form: CadastroCarrinhoSchema):
-  """Cadastra um novo item a base de dados de Carrinho."""
+  """Cadastra um novo pedido de compra a base de dados de carrinho."""
   try:
     usuario = unquote(unquote(form.usuario))
     produto = unquote(unquote(form.produto))
@@ -145,7 +145,7 @@ def inserir_compra(form: CadastroCarrinhoSchema):
 @app.get('/obter_dados_carrinho', tags = [carrinho_tag],
           responses={'200': MensagemCarrinhoSchema, '400': MensagemCarrinhoSchema})
 def obter_dados_carrinho():
-  """Obtem a quantidade e o preço acumulado no carrinho para a seção atual"""
+  """Obtem a quantidade de compras e o preço atual acumulado no carrinho na seção atual."""
   try:
     quantidade_total = int(comum.obter_valor_total(Carrinho.quantidade, Carrinho.secao, comum.id_secao))
     preco_total =  round(float(comum.obter_valor_total(Carrinho.preco, Carrinho.secao, comum.id_secao)), 2)
@@ -158,7 +158,7 @@ def obter_dados_carrinho():
 @app.put('/cancelar_compra', tags = [carrinho_tag],
           responses={'200': UpdateCarrinhoSchema, '201': MensagemCarrinhoSchema, '400': MensagemCarrinhoSchema})
 def cancelar_compra(form: CancelaCarrinhoSchema):
-  """Cancela um item adicionado por engano ao Carrinho."""
+  """Cancela uma determinada quantidade de itens adicionados ao carrinho de um determinado produto na seção atual."""
   try:
     produto_cancelado = str(unquote(unquote(form.produto)))
     quantidade_cancelada = int(unquote(unquote(form.quantidade)))

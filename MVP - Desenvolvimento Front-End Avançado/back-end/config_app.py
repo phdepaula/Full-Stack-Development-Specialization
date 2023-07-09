@@ -11,9 +11,9 @@ CORS(app)
 
 # Definindo Tags
 home_tag = Tag(name="Documentação", description="Seleção de documentação: Swagger, Redoc ou RapiDoc.")
-login_tag = Tag(name="Login", description="Controle dos dados de Login do Mercado.")
-produto_tag = Tag(name="Produtos", description="Controle dos produtos vendidos pelo Mercado.")
-carrinho_tag = Tag(name="Carrinho", description="Controle dos produtos adicionados ao Carrinho.")
+login_tag = Tag(name="Login", description="Controle dos dados de login.")
+produto_tag = Tag(name="Produtos", description="Controle dos produtos vendidos.")
+carrinho_tag = Tag(name="Carrinho", description="Controle das compras adicionadas ao carrinho.")
 
 # Definindo seção atual
 definir_secao()
