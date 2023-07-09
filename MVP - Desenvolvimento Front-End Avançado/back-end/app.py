@@ -130,9 +130,9 @@ def inserir_compra(form: CadastroCarrinhoSchema):
       return {'mensagem': 'Novo item adicionado ao carrinho com sucesso!'}, 200
     else:
       quantidade_atual = int(comum.somar_condicional(Carrinho.quantidade, Carrinho.produto, produto, Carrinho.secao, comum.id_secao))
-      preco_atual = float(comum.somar_condicional(Carrinho.preco, Carrinho.produto, produto, Carrinho.secao, comum.id_secao))
+      preco_atual = round(float(comum.somar_condicional(Carrinho.preco, Carrinho.produto, produto, Carrinho.secao, comum.id_secao)), 2)
       nova_quantidade = quantidade_atual + quantidade_informada
-      novo_preco = preco_atual + preco_informado
+      novo_preco = round(preco_atual + preco_informado, 2)
 
       comum.atualizar_banco(Carrinho, Carrinho.produto, produto, Carrinho.secao, comum.id_secao, Carrinho.quantidade, nova_quantidade)
       comum.atualizar_banco(Carrinho, Carrinho.produto, produto, Carrinho.secao, comum.id_secao, Carrinho.preco, novo_preco)
@@ -162,16 +162,16 @@ def cancelar_compra(form: CancelaCarrinhoSchema):
   try:
     produto_cancelado = str(unquote(unquote(form.produto)))
     quantidade_cancelada = int(unquote(unquote(form.quantidade)))
-    preco_cancelado = float(unquote(unquote(form.preco)))
+    preco_cancelado = round(float(unquote(unquote(form.preco))), 2)
 
     quantidade_atual = int(comum.somar_condicional(Carrinho.quantidade, Carrinho.produto, produto_cancelado, Carrinho.secao, comum.id_secao))
-    preco_atual = float(comum.somar_condicional(Carrinho.preco, Carrinho.produto, produto_cancelado, Carrinho.secao, comum.id_secao))
+    preco_atual = round(float(comum.somar_condicional(Carrinho.preco, Carrinho.produto, produto_cancelado, Carrinho.secao, comum.id_secao)), 2)
 
     if quantidade_cancelada > quantidade_atual:
       return {'mensagem': f'Não existem {quantidade_cancelada} itens no carrinho!'}, 201
     else:
       nova_quantidade = quantidade_atual - quantidade_cancelada
-      novo_preco = preco_atual - preco_cancelado
+      novo_preco = round(preco_atual - preco_cancelado, 2)
 
       comum.atualizar_banco(Carrinho, Carrinho.produto, produto_cancelado, Carrinho.secao, comum.id_secao, Carrinho.quantidade, nova_quantidade)
       comum.atualizar_banco(Carrinho, Carrinho.produto, produto_cancelado, Carrinho.secao, comum.id_secao, Carrinho.preco, novo_preco)
