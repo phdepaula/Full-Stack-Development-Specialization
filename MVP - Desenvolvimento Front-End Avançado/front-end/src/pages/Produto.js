@@ -26,8 +26,31 @@ export default function PaginaInicial() {
   const [dadosProduto, setDadosProduto] = useState([]);
   const larguratela = window.innerWidth;
   const numeroCards = produtosLista.length;
+  const [statusAPI, setStatusAPI] = useState(0);
   const numeroCardsVisiveis = Math.round((larguratela/(221)));
   let [cardAtual, setCardAtual] = useState(numeroCardsVisiveis)
+
+  const tipoCategoria = (infoCategoria) => {
+    setCategoria(infoCategoria)
+  }
+
+  const scrollEsquerda = () => {
+    const novaPosicao = scrollPosicao - 230
+
+    if(cardAtual > numeroCardsVisiveis) {
+      setCardAtual(cardAtual - 1)
+      setScrollPosicao(novaPosicao)
+    }
+  };
+
+  const scrollDireita = () => {
+    const novaPosicao = scrollPosicao + 230
+
+    if(cardAtual <= numeroCards) {
+      setCardAtual(cardAtual + 1)
+      setScrollPosicao(novaPosicao)
+    }
+  }
 
   useEffect(() => {
     axios.get('http://127.0.0.1:5000/listar_produto', {
@@ -36,6 +59,15 @@ export default function PaginaInicial() {
       .then(res => setProdutosLista(res.data.produtos))
       .catch(error => console.log(error))
   }, [categoria])
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:5000/obter_dados_carrinho')
+      .then(res => {
+        setQuantidade(res.data.quantidade);
+        setValorTotal(res.data.preco.toFixed(2));
+      })
+      .catch(error => console.log(error));
+  }, [statusAPI]);
 
   useEffect(() => {
     const buscarProduto = async () => {
@@ -59,78 +91,103 @@ export default function PaginaInicial() {
     buscarProduto();
   }, [nome]);
   
-  const tipoCategoria = (infoCategoria) => {
-    setCategoria(infoCategoria)
-  }
-  
-  const quantidadeCompras = (numCompras, preco) => {
-    if(cookieNomeUsuario) {
-      const valor = Math.round((numCompras*preco))
+  async function inserirCompra (nomeProduto, numCompras, preco) {
+    try {
+      if (cookieNomeUsuario) {
+        const valor = (numCompras * preco).toFixed(2);
 
-      if (window.confirm(`Deseja adicionar a compra no valor de R$ ${valor} ao carrinho?`)) {
-        setQuantidade(quantidade + numCompras)
-        setValorTotal(valorTotal + valor)
-        alert('Compra adicionada ao carrinho!')
+        if (window.confirm(`Deseja adicionar a compra no valor de R$ ${valor} ao carrinho?`)) {
+          const formData = new FormData();
+          formData.append('usuario', cookieNomeUsuario);
+          formData.append('produto', nomeProduto);
+          formData.append('quantidade', numCompras);
+          formData.append('preco', valor);
+
+          const url = 'http://127.0.0.1:5000/inserir_compra';
+          const response = await axios.post(url, formData);
+          const data = response.data;
+          
+          setStatusAPI(prevCounter => -prevCounter);
+
+          alert(data.mensagem)
+        }
+      } else {
+        alert('É necessário realizar login para adicionar compras ao carrinho!')
       }
-    } else {
-      alert('É necessário realizar login para adicionar compras ao carrinho!')
-    }    
+    } catch (error) {
+      console.error('Error: ', error)
+    }   
   }
 
-  const finalizarCompra = () => {
-    if (quantidade === 0) {
-      alert('Não existem items no carrinho!')
-    } else if (window.confirm(`Deseja realizar a compra no valor de R$ ${valorTotal}?`)) {
-      setValorTotal(0)
-      setQuantidade(0);
-      alert('Compra realizada com sucesso!')
-    } else if (window.confirm(`Deseja cancelar a compra no valor de R$ ${valorTotal}?`)) {
-      setValorTotal(0)
-      setQuantidade(0);
-      alert('Compra cancelada!')
-    } else {
-      alert('Continue comprando!')
-    }
+  async function finalizarCarrinho () {
+    try {
+      if (quantidade === 0) {
+        alert('Não existem items no carrinho!')
+      } else if (window.confirm(`Deseja realizar a compra no valor de R$ ${valorTotal}?`)) {
+        let url = 'http://127.0.0.1:5000/finalizar_carrinho';
+        const response = await axios.put(url);
+        const data = response.data;
+
+        alert(data.mensagem);
+
+        setStatusAPI(prevCounter => -prevCounter);
+      } else {
+        alert('Continue comprando!')
+      }
+    } catch (error) {
+      console.error('Error: ', error)
+     }
   }
 
-  const cancelarPagamento = (quantidadeCancelada, preco) => {
+  async function cancelarCarrinho () {
+    try {
+      if (quantidade === 0) {
+        alert('Não existem items no carrinho!')
+      } else if (window.confirm(`Deseja cancelar a compra no valor de R$ ${valorTotal}?`)) {
+        let url = 'http://127.0.0.1:5000/cancelar_carrinho';
+        const response = await axios.put(url);
+        const data = response.data;
+        
+        alert(data.mensagem);
+        
+        setStatusAPI(prevCounter => -prevCounter);       
+      } else {
+        alert('Continue comprando!')
+      }
+    } catch (error) {
+      console.error('Error: ', error)
+     }
+  }
+
+  async function cancelarPagamento (nomeProduto, numCompras, preco) {
+    const valorCancelado = (numCompras*preco).toFixed(2);
+
     if (quantidade === 0) {
       alert('Não existem compras no carrinho!')
-    }else if (window.confirm(`Deseja cancelar ${quantidadeCancelada} compras(s) de ${nome}?`)) {
-      const valorCancelado = Math.round((quantidadeCancelada*preco))
+    } else if (window.confirm(`Deseja cancelar ${numCompras} compras(s) de ${nome}?`)) {
+      const formData = new FormData();
+      formData.append('produto', nomeProduto);
+      formData.append('quantidade', numCompras);
+      formData.append('preco', valorCancelado);
       
-      alert('Compra(s) canceladas!')
-      setQuantidade(quantidade - quantidadeCancelada);
-      setValorTotal(valorTotal - valorCancelado)
+      let url = 'http://127.0.0.1:5000/cancelar_compra';
+      const response = await axios.put(url, formData);
+      const data = response.data;
+
+      alert(data.mensagem);
+
+      setStatusAPI(prevCounter => -prevCounter);
     } else {
       alert('Continue comprando!')
     }
   }
   
-  const scrollEsquerda = () => {
-    const novaPosicao = scrollPosicao - 230
-
-    if(cardAtual > numeroCardsVisiveis) {
-      setCardAtual(cardAtual - 1)
-      setScrollPosicao(novaPosicao)
-    }
-  };
-
-  const scrollDireita = () => {
-    const novaPosicao = scrollPosicao + 230
-
-    if(cardAtual <= numeroCards) {
-      setCardAtual(cardAtual + 1)
-      setScrollPosicao(novaPosicao)
-    }
-  }
-
   return (
     statusProduto.status === false ? <PaginaNaoEncontrada/>:
     <div className='Page'>
       <header>
         <div className='Topo'>
-          <Header quantidade={quantidade} comprar={finalizarCompra} />
+          <Header quantidade={quantidade} valor={valorTotal} comprar={finalizarCarrinho} cancelar={cancelarCarrinho}/>
         </div>
         
         <div className='Navegacao'>
@@ -149,7 +206,7 @@ export default function PaginaInicial() {
           </div>
 
           <div className='ProdutosDetalhados'>
-            <ProdutoDetalhado produto={dadosProduto} quantidadeCompras={quantidadeCompras} cancelarPagamento={cancelarPagamento}/>
+            <ProdutoDetalhado produto={dadosProduto} quantidadeCompras={inserirCompra} cancelarPagamento={cancelarPagamento}/>
           </div>
 
           <div className='TituloCards'>
@@ -159,7 +216,7 @@ export default function PaginaInicial() {
           <div className='Cards'>
             <div className='ListaProduto' style={{ transform: `translateX(-${scrollPosicao}px)`, flexGrow: 1 }}>
                 {produtosLista.map((p, index) => (
-                <CardProduto key={index} produto={p} quantidadeCompras={quantidadeCompras}/>
+                <CardProduto key={index} produto={p} quantidadeCompras={inserirCompra}/>
               ))}
             </div>
 

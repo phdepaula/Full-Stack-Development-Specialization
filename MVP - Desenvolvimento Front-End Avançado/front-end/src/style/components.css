@@ -553,6 +553,14 @@ body {
   padding: 16px 0px;
 }
 
+#valortotal,
+#NumQuantidadePagamento,
+#valorunitario {
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+}
+
 #TextoQuantidadePagamento,
 #total {
   font-weight: 700;

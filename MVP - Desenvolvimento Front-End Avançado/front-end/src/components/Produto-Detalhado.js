@@ -9,19 +9,18 @@ export default function ProdutoDetalhado(props) {
   const compras = props.quantidadeCompras;
   const cancelarPagamento = props.cancelarPagamento
   const imagem = imagensProdutos[produto.id]
-  const [quantidade, setQuantidade] = useState(0);
-  
-  let valor = Math.round((quantidade*produto.preco))
+  const [quantidade, setQuantidade] = useState(1);
+  let valor = (quantidade*produto.preco).toFixed(2);
 
   const mais = () => {
     setQuantidade(quantidade + 1);
   };
 
   const menos = () => {
-    if (quantidade > 0) {
+    if (quantidade > 1) {
       setQuantidade(quantidade - 1);
     } else {
-      alert('A quantidade mínima do produto é 0!')
+      alert('A quantidade mínima do produto é 1!')
     }
   };
 
@@ -74,15 +73,15 @@ export default function ProdutoDetalhado(props) {
 
             <div className='QuantidadePagamento'>
               <span id='TextoQuantidadePagamento'>Quantidade:</span>
-              <span id='ItensQuantidadePagamento'>{quantidade}</span>
+              <span id='NumQuantidadePagamento'>{quantidade}</span>
               <img src={adicionar} alt="mais" onClick={mais}/>
               <img src={remover} alt="menos" onClick={menos}/>
             </div>
           </div>
 
           <div className='ButtonsPagamento'>
-            <button id='ButtonComprarPagamento' onClick={() => compras(quantidade, produto.preco)}>Comprar</button>
-            <button id='ButtonCancelarPagamento' onClick={() => cancelarPagamento(quantidade, produto.preco)}>Cancelar</button>
+            <button id='ButtonComprarPagamento' onClick={() => compras(produto.nome, quantidade, produto.preco)}>Comprar</button>
+            <button id='ButtonCancelarPagamento' onClick={() => cancelarPagamento(produto.nome, quantidade, produto.preco)}>Cancelar</button>
           </div>
         </div>
       </div>

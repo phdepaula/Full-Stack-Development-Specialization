@@ -130,7 +130,7 @@ def inserir_compra(form: CadastroCarrinhoSchema):
       return {'mensagem': 'Novo item adicionado ao carrinho com sucesso!'}, 200
     else:
       quantidade_atual = int(comum.somar_condicional(Carrinho.quantidade, Carrinho.produto, produto, Carrinho.secao, comum.id_secao))
-      preco_atual = int(comum.somar_condicional(Carrinho.preco, Carrinho.produto, produto, Carrinho.secao, comum.id_secao))
+      preco_atual = float(comum.somar_condicional(Carrinho.preco, Carrinho.produto, produto, Carrinho.secao, comum.id_secao))
       nova_quantidade = quantidade_atual + quantidade_informada
       novo_preco = preco_atual + preco_informado
 
@@ -162,10 +162,10 @@ def cancelar_compra(form: CancelaCarrinhoSchema):
   try:
     produto_cancelado = str(unquote(unquote(form.produto)))
     quantidade_cancelada = int(unquote(unquote(form.quantidade)))
-    preco_cancelado = round(float(unquote(unquote(form.preco))), 2)
+    preco_cancelado = float(unquote(unquote(form.preco)))
 
     quantidade_atual = int(comum.somar_condicional(Carrinho.quantidade, Carrinho.produto, produto_cancelado, Carrinho.secao, comum.id_secao))
-    preco_atual = int(comum.somar_condicional(Carrinho.preco, Carrinho.produto, produto_cancelado, Carrinho.secao, comum.id_secao))
+    preco_atual = float(comum.somar_condicional(Carrinho.preco, Carrinho.produto, produto_cancelado, Carrinho.secao, comum.id_secao))
 
     if quantidade_cancelada > quantidade_atual:
       return {'mensagem': f'Não existem {quantidade_cancelada} itens no carrinho!'}, 201
@@ -176,7 +176,7 @@ def cancelar_compra(form: CancelaCarrinhoSchema):
       comum.atualizar_banco(Carrinho, Carrinho.produto, produto_cancelado, Carrinho.secao, comum.id_secao, Carrinho.quantidade, nova_quantidade)
       comum.atualizar_banco(Carrinho, Carrinho.produto, produto_cancelado, Carrinho.secao, comum.id_secao, Carrinho.preco, novo_preco)
       
-    return apresentar_atualizacao(produto_cancelado, nova_quantidade, novo_preco, 'Banco atualizado!'), 200
+    return apresentar_atualizacao(produto_cancelado, nova_quantidade, novo_preco, 'Compras canceladas!'), 200
   except Exception as e:
     return {'mensagem': f'ERRO: {e}'}, 400
   
