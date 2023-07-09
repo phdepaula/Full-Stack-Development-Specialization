@@ -392,6 +392,11 @@ body {
   height: 16px;
 }
 
+.ComprarCard{
+  display: flex;
+  gap: 8px;
+}
+
 .SetasProdutos {
   position: relative;
   top: -210px;

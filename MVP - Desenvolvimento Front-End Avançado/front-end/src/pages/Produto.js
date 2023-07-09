@@ -164,7 +164,7 @@ export default function PaginaInicial() {
 
     if (quantidade === 0) {
       alert('Não existem compras no carrinho!')
-    } else if (window.confirm(`Deseja cancelar ${numCompras} compras(s) de ${nome}?`)) {
+    } else if (window.confirm(`Deseja cancelar ${numCompras} compras(s) de ${nomeProduto}?`)) {
       const formData = new FormData();
       formData.append('produto', nomeProduto);
       formData.append('quantidade', numCompras);
@@ -216,7 +216,7 @@ export default function PaginaInicial() {
           <div className='Cards'>
             <div className='ListaProduto' style={{ transform: `translateX(-${scrollPosicao}px)`, flexGrow: 1 }}>
                 {produtosLista.map((p, index) => (
-                <CardProduto key={index} produto={p} quantidadeCompras={inserirCompra}/>
+                <CardProduto key={index} produto={p} quantidadeCompras={inserirCompra} cancelarPagamento={cancelarPagamento}/>
               ))}
             </div>
 

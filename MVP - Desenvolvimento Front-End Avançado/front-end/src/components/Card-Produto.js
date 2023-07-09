@@ -9,7 +9,7 @@ export default function CardProduto(props) {
   const navigate = useNavigate();
   const produto = props.produto;
   const compras = props.quantidadeCompras;
-  
+  const cancelarPagamento = props.cancelarPagamento  
   const [quantidade, setQuantidade] = useState(1);
   const [imagem, setImagem] = useState(null);
 
@@ -52,6 +52,7 @@ export default function CardProduto(props) {
 
       <div className='ComprarCard'>
         <button id='ButtonComprarCard' onClick={() => compras(produto.nome, quantidade, produto.preco)}>Comprar</button>
+        <button id='ButtonComprarCard' onClick={() => cancelarPagamento(produto.nome, quantidade, produto.preco)}>Cancelar</button>
       </div>
     </article>
   );

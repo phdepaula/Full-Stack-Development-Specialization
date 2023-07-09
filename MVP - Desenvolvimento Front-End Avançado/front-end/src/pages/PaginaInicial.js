@@ -92,6 +92,29 @@ export default function PaginaInicial() {
     }   
   }
 
+  async function cancelarPagamento (nomeProduto, numCompras, preco) {
+    const valorCancelado = (numCompras*preco).toFixed(2);
+
+    if (quantidade === 0) {
+      alert('Não existem compras no carrinho!')
+    } else if (window.confirm(`Deseja cancelar ${numCompras} compras(s) de ${nomeProduto}?`)) {
+      const formData = new FormData();
+      formData.append('produto', nomeProduto);
+      formData.append('quantidade', numCompras);
+      formData.append('preco', valorCancelado);
+      
+      let url = 'http://127.0.0.1:5000/cancelar_compra';
+      const response = await axios.put(url, formData);
+      const data = response.data;
+
+      alert(data.mensagem);
+
+      setStatusAPI(prevCounter => -prevCounter);
+    } else {
+      alert('Continue comprando!')
+    }
+  }
+
   async function finalizarCarrinho () {
     try {
       if (quantidade === 0) {
@@ -161,7 +184,7 @@ export default function PaginaInicial() {
           <div className='Cards'>
             <div className='ListaProduto' style={{ transform: `translateX(-${scrollPosicao}px)`, flexGrow: 1 }}>
                 {produtosLista.map((p, index) => (
-                <CardProduto key={index} produto={p} quantidadeCompras={quantidadeCompras}/>
+                <CardProduto key={index} produto={p} quantidadeCompras={quantidadeCompras} cancelarPagamento={cancelarPagamento}/>
               ))}
             </div>
 
