@@ -120,25 +120,30 @@ body {
 .LoginArea,
 .CarrinhoArea {
   display: flex;
+  flex-direction: column;
   position: relative;
   background: #FFF;
   width: 160px;
-  height: 51px;
   border: 1px solid #000;
-  align-items: center;
   justify-content: center;
   background: #ffffff;
   border-radius: 0px;
   top: -4px;
+  align-items: center;
+  gap: 8px;
   z-index: 10000;
 }
 
 .LoginArea {
   left: 71%;
+  width: 130px;
+  height: 51px;
 }
 
 .CarrinhoArea {
   float: right;
+  width: 170px;
+  height: 130px;
 }
 
 #ButtonLogin,
@@ -147,6 +152,7 @@ body {
 #ButtonComprarPagamento,
 #ButtonCancelarPagamento {
   font-size: 12px;
+  height: 32px;
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 0.6px;
@@ -166,6 +172,12 @@ body {
   transition: 0.2s ease-in-out;
   transform: scale(1.05);
 	cursor: pointer;
+}
+
+#ValorTotal {
+  display: flex;
+  color: #000000;
+  font-size: 12px;
 }
 
 .NavegacaoItems {
