@@ -131,6 +131,7 @@ body {
   top: -4px;
   align-items: center;
   gap: 8px;
+  border-radius: 4px;
   z-index: 10000;
 }
 
