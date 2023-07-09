@@ -4,13 +4,14 @@ Projeto desenvolvido para a segunda sprint de Desenvolvimento Front-End Avançad
 
 ## 🛒 **Mercado Online**
 
- >O MVP consiste em um sistema web de um mercado em que o usuário pode fazer login no sistema, visualizar os produtos disponíveis
- >no mercado e adicioná-los ao carrinho para efetuar a compra.
+O MVP consiste em um sistema web de um mercado online onde os usuários podem fazer login, explorar produtos e compra-los. O sistema oferece recursos básicos, como autenticação de usuário, navegação por produtos e funcionalidade de carrinho de compras.
 
 ### 📁 **Diretórios do projeto**
   * **Back-end:** Diretório com todas as especificações das API's desenvolvidas para o projeto.
   * **Front-end:** Diretório com todas as especificações do front-end desenvolvido para o projeto.
 
-### 🛠️ Built With
-* [Flask](https://flask.palletsprojects.com/) - Back-End
-* [Node.js + React](https://reactjs.org/) - Front-End
+### 🛠️ Feito Com
+* [Flask](https://flask.palletsprojects.com/) - API FrameWork
+* [SQLAlchemy](https://docs.sqlalchemy.org/en/14/) - ORM
+* [Node.js](https://nodejs.org/en/docs) - Runtime
+* [React](https://reactjs.org/) - Biblioteca de Interface

@@ -9,5 +9,6 @@ Projeto desenvolvido para a entrega do MVP da Sprint 1: Desenvolvimento Full Sta
   * **Back-end:** Diretório com todas as especificações das API's desenvolvidas para o projeto.
   * **Front-end:** Diretório com todas as especificações do front-end desenvolvido para o projeto.
 
-### 🛠️ Built With
-* [Flask](https://flask.palletsprojects.com/) - Back-End
+### 🛠️ Feito Com
+* [Flask](https://flask.palletsprojects.com/) - API FrameWork
+* [SQLAlchemy](https://docs.sqlalchemy.org/en/14/) - ORM
