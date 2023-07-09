@@ -6,10 +6,10 @@ Projetos desenvolvidos para a pós graduação/especialização realizada em Des
 * **Sprint 2:** Desenvolvimento Front-End Avançado
 * **Sprint 3:** Desenvolvimento Back-End Avançado
 
-> **Mais informações:** https://especializacao.ccec.puc-rio.br/especializacao/desenvolvimento-full-stack
+**Para mais informações:** [Ementa PUC RIO](>>https://especializacao.ccec.puc-rio.br/especializacao/desenvolvimento-full-stack).
 
 ## 🪪 **Dados Pessoais**
 
-    Estudante: Pedro Henrique de Paula Alves - Uberlândia-MG
+    Estudante: Pedro Henrique de Paula Alves
     Universidade: Pontifícia Universidade Católica do Rio de Janeiro
     Linkedin: https://www.linkedin.com/in/pedro-henrique-de-paula-alves-8995b9180/

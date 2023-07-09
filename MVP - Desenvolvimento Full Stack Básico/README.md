@@ -1,4 +1,4 @@
-# **Sprint 1: Desenvolvimento Full Stack Básico**
+# 🖥️ **Sprint 1: Desenvolvimento Full Stack Básico**
 Projeto desenvolvido para a entrega do MVP da Sprint 1: Desenvolvimento Full Stack Básico.
 
 ## 🚗 **MVP - Controle de Vendas de Automóveis**
@@ -8,3 +8,6 @@ Projeto desenvolvido para a entrega do MVP da Sprint 1: Desenvolvimento Full Sta
 ### 📁 **Diretórios do projeto**
   * **Back-end:** Diretório com todas as especificações das API's desenvolvidas para o projeto.
   * **Front-end:** Diretório com todas as especificações do front-end desenvolvido para o projeto.
+
+### 🛠️ Built With
+* [Flask](https://flask.palletsprojects.com/) - Back-End
