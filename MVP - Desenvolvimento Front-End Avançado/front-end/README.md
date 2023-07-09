@@ -5,7 +5,7 @@ Diretório com todas as especificações do front-end desenvolvido para o projet
 ## 📋 **Pré-requisitos**
 
 ### **Node.js**
-É necessário ter instalado pelo menos a versão 12.22.0 do **Node.js**. Caso não o tenha instalado ainda, baixe ele em [Node.js](https://nodejs.org/en/download).
+É necessário ter instalado o **Node.js** em sua máquina. Caso não o tenha instalado ainda, baixe ele em [Node.js Org](https://nodejs.org/en/download).
 
 ### **Dependências e Bibliotecas**
 É necessário ter instalado todas as **dependências/bibliotecas**, descritas no arquivo `package.json`.
@@ -34,4 +34,4 @@ npm start
 > Abra o [http://localhost:3000/](http://localhost:3000/#/) no navegador.
 
 ## 🖼️ **Figma**
-Para visualizar o desigh do sistema web desenvolvido, acesse a projeto construído no [Figma](https://www.figma.com/file/sGthtUn5icoEvL3grcUNjm/MVP---PUC-RIO?type=design&node-id=15%3A6861&mode=design&t=63aBNnEl8qYRm9Y1-1).
+Para visualizar o design do sistema web desenvolvido, acesse o projeto construído no [Figma](https://www.figma.com/file/sGthtUn5icoEvL3grcUNjm/MVP---PUC-RIO?type=design&node-id=15%3A6861&mode=design&t=63aBNnEl8qYRm9Y1-1).
