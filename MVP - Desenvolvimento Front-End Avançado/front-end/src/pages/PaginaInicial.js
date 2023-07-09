@@ -14,13 +14,38 @@ import '../style/produtos.css'
 export default function PaginaInicial() {
   const cookieNomeUsuario = Cookies.get('nomeUsuario');
   const navigate = useNavigate();
-  
   const [produtosLista, setProdutosLista] = useState([]);
   const [categoria, setCategoria] = useState('Destaques');
   const [quantidade, setQuantidade] = useState(0);
   const [valorTotal, setValorTotal] = useState(0);
   const [scrollPosicao, setScrollPosicao] = useState(0);
   const [statusAPI, setStatusAPI] = useState(0);
+  const larguratela = window.innerWidth;
+  const numeroCards = produtosLista.length;
+  const numeroCardsVisiveis = Math.round((larguratela/(221)));
+  let [cardAtual, setCardAtual] = useState(numeroCardsVisiveis)
+
+  const tipoCategoria = (infoCategoria) => {
+    setCategoria(infoCategoria)
+  }
+
+  const scrollEsquerda = () => {
+    const novaPosicao = scrollPosicao - 230
+
+    if(cardAtual > numeroCardsVisiveis) {
+      setCardAtual(cardAtual - 1)
+      setScrollPosicao(novaPosicao)
+    }
+  };
+
+  const scrollDireita = () => {
+    const novaPosicao = scrollPosicao + 230
+
+    if(cardAtual <= numeroCards) {
+      setCardAtual(cardAtual + 1)
+      setScrollPosicao(novaPosicao)
+    }
+  }
 
   useEffect(() => {
     axios.get('http://127.0.0.1:5000/listar_produto', {
@@ -30,11 +55,6 @@ export default function PaginaInicial() {
       .catch(error => console.log(error))
   }, [categoria])
 
-  const larguratela = window.innerWidth;
-  const numeroCards = produtosLista.length;
-  const numeroCardsVisiveis = Math.round((larguratela/(221)));
-  let [cardAtual, setCardAtual] = useState(numeroCardsVisiveis)
-
   useEffect(() => {
     axios.get('http://127.0.0.1:5000/obter_dados_carrinho')
       .then(res => {
@@ -43,11 +63,7 @@ export default function PaginaInicial() {
       })
       .catch(error => console.log(error));
   }, [statusAPI]);
-  
-  const tipoCategoria = (infoCategoria) => {
-    setCategoria(infoCategoria)
-  }
-  
+   
   async function quantidadeCompras (nomeProduto, numCompras, preco) {
     try {
       if (cookieNomeUsuario) {
@@ -116,24 +132,6 @@ export default function PaginaInicial() {
      }
   }
   
-  const scrollEsquerda = () => {
-    const novaPosicao = scrollPosicao - 230
-
-    if(cardAtual > numeroCardsVisiveis) {
-      setCardAtual(cardAtual - 1)
-      setScrollPosicao(novaPosicao)
-    }
-  };
-
-  const scrollDireita = () => {
-    const novaPosicao = scrollPosicao + 230
-
-    if(cardAtual <= numeroCards) {
-      setCardAtual(cardAtual + 1)
-      setScrollPosicao(novaPosicao)
-    }
-  }
-
   return (
     <div className='Page'>
       <header>
