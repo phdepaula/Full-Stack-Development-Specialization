@@ -13,7 +13,9 @@ export default function Header(props) {
   const cookieNomeUsuario = Cookies.get('nomeUsuario');
   const navigate = useNavigate();
   const quantidade = props.quantidade;
+  const valor = props.valor;
   const comprar = props.comprar;
+  const cancelar = props.cancelar;
   const [clickLogin, setClickLogin] = useState(false);
   const loginArea = useRef(null);
   const [clickCarrinho, setClickCarrinho] = useState(false);
@@ -127,7 +129,9 @@ export default function Header(props) {
           <div className='CarrinhoOculto' >
             <div className='EscurecerFundo' />
             <div className='CarrinhoArea' ref={carrinhoArea}>
+              <span id='ValorTotal'>Total: R$ {valor}</span>
               <button id='ButtonCarrinho' onClick={() => comprar()}>Finalizar Compra</button>
+              <button id='ButtonCarrinho' onClick={() => cancelar()}>Cancelar Compra</button>
             </div>
           </div>
         )

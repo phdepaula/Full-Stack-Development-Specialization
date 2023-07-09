@@ -142,7 +142,7 @@ def inserir_compra(form: CadastroCarrinhoSchema):
     return {'mensagem': f'ERRO: {e}'}, 400
   
 
-@app.post('/obter_dados_carrinho', tags = [carrinho_tag],
+@app.get('/obter_dados_carrinho', tags = [carrinho_tag],
           responses={'200': MensagemCarrinhoSchema, '400': MensagemCarrinhoSchema})
 def obter_dados_carrinho():
   """Obtem a quantidade e o preço acumulado no carrinho para a seção atual"""

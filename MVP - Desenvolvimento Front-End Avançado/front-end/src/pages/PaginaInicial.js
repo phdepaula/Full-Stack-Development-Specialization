@@ -20,6 +20,7 @@ export default function PaginaInicial() {
   const [quantidade, setQuantidade] = useState(0);
   const [valorTotal, setValorTotal] = useState(0);
   const [scrollPosicao, setScrollPosicao] = useState(0);
+  const [statusAPI, setStatusAPI] = useState(0);
 
   useEffect(() => {
     axios.get('http://127.0.0.1:5000/listar_produto', {
@@ -34,38 +35,85 @@ export default function PaginaInicial() {
   const numeroCardsVisiveis = Math.round((larguratela/(221)));
   let [cardAtual, setCardAtual] = useState(numeroCardsVisiveis)
 
+  useEffect(() => {
+    axios.get('http://127.0.0.1:5000/obter_dados_carrinho')
+      .then(res => {
+        setQuantidade(res.data.quantidade);
+        setValorTotal(res.data.preco.toFixed(2));
+      })
+      .catch(error => console.log(error));
+  }, [statusAPI]);
+  
   const tipoCategoria = (infoCategoria) => {
     setCategoria(infoCategoria)
   }
   
-  const quantidadeCompras = (numCompras, preco) => {
-    if(cookieNomeUsuario) {
-      const valor = Math.round((numCompras*preco))
+  async function quantidadeCompras (nomeProduto, numCompras, preco) {
+    try {
+      if (cookieNomeUsuario) {
+        const valor = (numCompras * preco).toFixed(2);
 
-      if (window.confirm(`Deseja adicionar a compra no valor de R$ ${valor} ao carrinho?`)) {
-        setQuantidade(quantidade + numCompras)
-        setValorTotal(valorTotal + valor)
-        alert('Compra adicionada ao carrinho!')
+        if (window.confirm(`Deseja adicionar a compra no valor de R$ ${valor} ao carrinho?`)) {
+          const formData = new FormData();
+          formData.append('usuario', cookieNomeUsuario);
+          formData.append('produto', nomeProduto);
+          formData.append('quantidade', numCompras);
+          formData.append('preco', valor);
+
+          const url = 'http://127.0.0.1:5000/inserir_compra';
+          const response = await axios.post(url, formData);
+          const data = response.data;
+          
+          setStatusAPI(prevCounter => -prevCounter);
+
+          alert(data.mensagem)
+        }
+      } else {
+        alert('É necessário realizar login para adicionar compras ao carrinho!')
       }
-    } else {
-      alert('É necessário realizar login para adicionar compras ao carrinho!')
-    }    
+    } catch (error) {
+      console.error('Error: ', error)
+    }   
   }
 
-  const finalizarCompra = () => {
-    if (quantidade === 0) {
-      alert('Não existem items no carrinho!')
-    } else if (window.confirm(`Deseja realizar a compra no valor de R$ ${valorTotal}?`)) {
-      setValorTotal(0)
-      setQuantidade(0);
-      alert('Compra realizada com sucesso!')
-    } else if (window.confirm(`Deseja cancelar a compra no valor de R$ ${valorTotal}?`)) {
-      setValorTotal(0)
-      setQuantidade(0);
-      alert('Compra cancelada!')
-    } else {
-      alert('Continue comprando!')
-    }
+  async function finalizarCarrinho () {
+    try {
+      if (quantidade === 0) {
+        alert('Não existem items no carrinho!')
+      } else if (window.confirm(`Deseja realizar a compra no valor de R$ ${valorTotal}?`)) {
+        let url = 'http://127.0.0.1:5000/finalizar_carrinho';
+        const response = await axios.put(url);
+        const data = response.data;
+
+        alert(data.mensagem);
+
+        setStatusAPI(prevCounter => -prevCounter);
+      } else {
+        alert('Continue comprando!')
+      }
+    } catch (error) {
+      console.error('Error: ', error)
+     }
+  }
+
+  async function cancelarCarrinho () {
+    try {
+      if (quantidade === 0) {
+        alert('Não existem items no carrinho!')
+      } else if (window.confirm(`Deseja cancelar a compra no valor de R$ ${valorTotal}?`)) {
+        let url = 'http://127.0.0.1:5000/cancelar_carrinho';
+        const response = await axios.put(url);
+        const data = response.data;
+        
+        alert(data.mensagem);
+        
+        setStatusAPI(prevCounter => -prevCounter);       
+      } else {
+        alert('Continue comprando!')
+      }
+    } catch (error) {
+      console.error('Error: ', error)
+     }
   }
   
   const scrollEsquerda = () => {
@@ -90,7 +138,7 @@ export default function PaginaInicial() {
     <div className='Page'>
       <header>
         <div className='Topo'>
-          <Header quantidade={quantidade} comprar={finalizarCompra} />
+          <Header quantidade={quantidade} valor={valorTotal} comprar={finalizarCarrinho} cancelar={cancelarCarrinho}/>
         </div>
         
         <div className='Navegacao'>

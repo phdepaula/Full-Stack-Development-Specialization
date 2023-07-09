@@ -51,7 +51,7 @@ export default function CardProduto(props) {
       </div>
 
       <div className='ComprarCard'>
-        <button id='ButtonComprarCard' onClick={() => compras(quantidade, produto.preco)}>Comprar</button>
+        <button id='ButtonComprarCard' onClick={() => compras(produto.nome, quantidade, produto.preco)}>Comprar</button>
       </div>
     </article>
   );
