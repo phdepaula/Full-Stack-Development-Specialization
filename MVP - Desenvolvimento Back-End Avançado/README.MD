@@ -1,5 +1,5 @@
 # 🖥️ **Sprint 3: Advanced Backend Development**
-Project developed to deliver the sprint MVP called Sales and Invoice Management System.
+Project developed to deliver the sprint 3 MVP called Sales and Invoice Management System.
 
 ## 🏪 Sales and Invoice Management System
 
