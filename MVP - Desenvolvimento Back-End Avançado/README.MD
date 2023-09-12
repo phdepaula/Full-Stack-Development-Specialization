@@ -1,5 +1,5 @@
 # 🖥️ **Sprint 3: Advanced Backend Development**
-Project developed to deliver the Sprint 3 MVP: Advanced Backend Development.
+Project developed to deliver the sprint MVP called Sales and Invoice Management System.
 
 ## 🏪 Sales and Invoice Management System
 
@@ -13,7 +13,7 @@ This system plays a crucial role in supporting the operations of an online store
 
 > Together, these three microservices make up a comprehensive solution for sales and invoice management, providing an efficient and reliable experience for the online store and its customers.
 
-### 🛠️ Built With
+## 🛠️ Built With
 * [Flask](https://flask.palletsprojects.com/) - Web Framework
 * [SQLAlchemy](https://docs.sqlalchemy.org/en/14/) - ORM
 * [OpenAPI3](https://swagger.io/specification/) - API Specification
