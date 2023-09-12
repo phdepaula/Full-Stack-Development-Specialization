@@ -13,6 +13,23 @@ This system plays a crucial role in supporting the operations of an online store
 
 > Together, these three microservices make up a comprehensive solution for sales and invoice management, providing an efficient and reliable experience for the online store and its customers.
 
+## ▶️ How to run
+
+Clone the following repositories and follow the instructions provided for each of them in the README file
+
+### Online Store Microservice
+```
+git clone https://github.com/phdepaula/Online-Store-Microservice.git
+```
+### Order Management Microservice
+```
+git clone https://github.com/phdepaula/Order-Management-Microservice.git
+```
+### Invoice Generator Microservice
+```
+git clone https://github.com/phdepaula/Invoice-Generator-Microservice.git
+```
+
 ## 🛠️ Built With
 * [Flask](https://flask.palletsprojects.com/) - Web Framework
 * [SQLAlchemy](https://docs.sqlalchemy.org/en/14/) - ORM
