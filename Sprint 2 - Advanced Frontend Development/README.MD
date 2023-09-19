@@ -18,4 +18,4 @@ An online marketplace web application that allows users to log in, browse, and p
 * [OpenAPI3](https://swagger.io/specification/) - API Specification
 * [SQLite](https://www.sqlite.org/index.html) - Database
 * [Node.js](https://nodejs.org/en/docs) - Runtime
-* [React](https://reactjs.org/) - Biblioteca de Interface
+* [React](https://reactjs.org/) - Interface Library
