@@ -1,23 +1,25 @@
-# 💻 **Back End - Mercado Online**
+# 💻 **Backend - Online Market**
 
-Diretório com todas as especificações do back-end desenvolvido para o projeto.
+Directory containing all the specifications of the APIs developed for the project.
 
-## 📋 **Pré-requisitos**
+## 📋 Prerequisites
+Access the API **root** directory via terminal:
 
-É necessário ter instalado todas as **dependências/bibliotecas**, descritas no arquivo `requirements.txt`.
-
-Para instalar, basta executar o seguinte comando via terminal no diretório raiz (back-end).
+```
+cd "Sprint 2 - Advanced Frontend Development\back-end"
+```
+Make sure you have installed all the Python libraries listed in the requirements.txt. To install, execute the command described below:
 
 ```
 pip install -r requirements.txt
 ```
 
-## ▶️ **Como executar**
+## ▶️ How to run
 
-Para executar a **API**, basta executar o seguinte comando via terminal no diretório raiz (back-end):
+To start the API, simply run via terminal:
 
 ```
 flask run --host 0.0.0.0 --port 5000
 ```
 
-> Abra o [http://localhost:5000/](http://localhost:5000/) no navegador para verificar o status da API em execução.
+> Open [http://localhost:5000/](http://localhost:5000/) in your browser to check the running project status.

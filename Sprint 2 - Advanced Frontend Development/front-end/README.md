@@ -1,37 +1,38 @@
-# 💻 **Front End - Mercado Online**
+# 💻 **Frontend - Online Market**
 
-Diretório com todas as especificações do front-end desenvolvido para o projeto.
+Directory containing all the specifications of the frontend developed for the project.
 
-## 📋 **Pré-requisitos**
+## 📋 Prerequisites
 
 ### **Node.js**
-É necessário ter instalado o **Node.js** em sua máquina. Caso não o tenha instalado ainda, baixe ele em [Node.js Org](https://nodejs.org/en/download).
+You must have **Node.js** installed on your machine. If you haven't installed it yet, download it from [Node.js Org](https://nodejs.org/en/download).
 
-### **Dependências e Bibliotecas**
-É necessário ter instalado todas as **dependências/bibliotecas**, descritas no arquivo `package.json`.
+### **Dependencies and Libraries**
+It is necessary to have installed all **dependencies/libraries**, described in the file `package.json`.
 
-Para instalar, basta executar o seguinte comando via terminal no diretório raiz (front-end).
+To install, access the application root directory:
+```
+cd "Sprint 2 - Advanced Frontend Development\front-end"
+```
 
+Then, run the following command via terminal:
 ```
 npm install
 ```
-> Uma pasta chamada `node_modules` será criada.
-
-## ▶️ **Como executar**
+> A folder called `node_modules` will be created.
 
 ### **API**
-O primeiro passo, é executar a API.
-> No diretório de back-end, que está um atrás deste, você encontrará as intruções para a execução.
+It is necessary to start the API in the back-end directory (which is one directory behind this one) and ensure that it remains active throughout its operation.
 
-### **Interface**
+## ▶️ How to run
 
-Para visualizar a **interface**, basta executar o seguinte comando via terminal no diretório raiz (front-end).
+To start the interface, simply run via terminal:
 
 ```
 npm start
 ```
 
-> Abra o [http://localhost:3000/](http://localhost:3000/#/) no navegador.
+> Open [http://localhost:3000/](http://localhost:3000/#/) in your browser to check the running project status.
 
-## 🖼️ **Figma**
-Para visualizar o design do sistema web desenvolvido, acesse o projeto construído no [Figma](https://www.figma.com/file/sGthtUn5icoEvL3grcUNjm/MVP---PUC-RIO?type=design&node-id=15%3A6861&mode=design&t=63aBNnEl8qYRm9Y1-1).
+## 🖼️ Figma
+To view the design of the developed web system, access the project built in [Figma](https://www.figma.com/file/sGthtUn5icoEvL3grcUNjm/MVP---PUC-RIO?type=design&node-id=15%3A6861&mode=design&t=63aBNnEl8qYRm9Y1-1).
