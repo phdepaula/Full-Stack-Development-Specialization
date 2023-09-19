@@ -15,7 +15,7 @@ This system plays a crucial role in supporting the operations of an online store
 
 ## ▶️ How to run
 
-Clone the following repositories and follow the instructions provided for each of them in the README file
+Clone the following repositories and follow the instructions provided for each of them in the README file.
 
 ### Online Store Microservice
 ```
