@@ -1,14 +1,18 @@
-# 🖥️ **Sprint 1: Desenvolvimento Full Stack Básico**
-Projeto desenvolvido para a entrega do MVP da Sprint 1: Desenvolvimento Full Stack Básico.
+# 🖥️ **Sprint 1: Basic Full Stack Development**
+Project developed to deliver the sprint 1 MVP called Car Sales Control.
 
-## 🚗 **MVP - Controle de Vendas de Automóveis**
+## 🚗 Car Sales Control
 
- O MVP consiste em um sistema web capaz de realizar cadastro, listagem e deleção de vendas e automóveis. Além disso, é necessário a realização de login para acessar a aplicação.
+A web system that provides essential features for managing sales and automobiles. It allows users to efficiently register, view, and delete sales and automobile records. Furthermore, to ensure security and access control, the system requires authentication through login before granting access to the application.
 
-### 📁 **Diretórios do projeto**
-  * **Back-end:** Diretório com todas as especificações das API's desenvolvidas para o projeto.
-  * **Front-end:** Diretório com todas as especificações do front-end desenvolvido para o projeto.
+## 📁 Project Directories
+  * **Backend:** Directory containing all the specifications of the APIs developed for the project.
+  * **Frontend:** Directory containing all the specifications of the frontend developed for the project.
 
-### 🛠️ Feito Com
-* [Flask](https://flask.palletsprojects.com/) - API FrameWork
+> Each directory contains a README file with instructions for executing its resources.
+
+## 🛠️ Built With
+* [Flask](https://flask.palletsprojects.com/) - Web Framework
 * [SQLAlchemy](https://docs.sqlalchemy.org/en/14/) - ORM
+* [OpenAPI3](https://swagger.io/specification/) - API Specification
+* [SQLite](https://www.sqlite.org/index.html) - Database

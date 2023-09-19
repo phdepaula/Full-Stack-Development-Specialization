@@ -1,31 +1,25 @@
-# ⚙️ **Back End - Controle de Vendas de Automóveis**
+# ⚙️ **Backend - Car Sales Control**
 
-Diretório com todas as especificações das API's desenvolvidas para o projeto.
+Directory containing all the specifications of the APIs developed for the project.
 
-## ▶️ **Como executar**
+## 📋 Prerequisites
+Access the API **root** directory via terminal:
 
-Será necessário ter todas as libs python listadas no `requirements.txt` instaladas.
-Após clonar o repositório, é necessário ir ao diretório raiz (back-end), pelo terminal, para poder executar os comandos descritos abaixo.
-
-> É fortemente indicado o uso de ambientes virtuais do tipo [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html).
+```
+cd "Sprint 1 - Basic Full Stack Development\back-end"
+```
+Make sure you have installed all the Python libraries listed in the requirements.txt. To install, execute the command described below:
 
 ```
 pip install -r requirements.txt
 ```
 
-Este comando instala as dependências/bibliotecas, descritas no arquivo `requirements.txt`.
+## ▶️ How to run
 
-Para executar a API basta executar:
+To start the API, simply run via terminal:
 
 ```
 flask run --host 0.0.0.0 --port 5000
 ```
 
-Em modo de desenvolvimento é recomendado executar utilizando o parâmetro reload, que reiniciará o servidor
-automaticamente após uma mudança no código fonte. 
-
-```
-flask run --host 0.0.0.0 --port 5000 --reload
-```
-
-Abra o [http://localhost:5000/#/](http://localhost:5000/#/) no navegador para verificar o status da API em execução.
+> Open [http://localhost:5000/](http://localhost:5000/) in your browser to check the running project status.

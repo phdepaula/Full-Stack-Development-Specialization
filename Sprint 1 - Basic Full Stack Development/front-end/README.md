@@ -1,27 +1,28 @@
-# 💻 **Front End - Controle de Vendas de Automóveis**
+# 💻 **Frontend - Car Sales Control**
 
-Diretório com todas as especificações do front-end desenvolvidas para o projeto.
+Directory containing all the specifications of the frontend developed for the project.
 
-## ▶️ **Como executar**
+## 📋 Prerequisites
 
-Primeiramente, é necessário iniciar a API no diretório de back-end (que está um diretório atrás deste).
+It's necessary to start the API in the back-end directory (which is one directory behind this one).
 
-### 🪪 **Login**
-Para realizar o login, basta acessar a seguinte rota: http://127.0.0.1:5000/login
+## 🪪 Login
 
-Os dados de login que deverão ser digitados no navegador são:
+To perform the login, simply access its [route](http://127.0.0.1:5000/login).
+
+The default registration data to be entered in the browser are:
     
-    Usuário: root
-    Senha: PUC2023
+    User: root
+    Password: PUC2023
 
-### 💰 **Controle de Vendas**
+## 💰 Sales Control
 
-Para realizar o controle de vendas, basta acessar a seguinte rota: http://127.0.0.1:5000/vendas
+To perform the sales controls, simply access its [route](http://127.0.0.1:5000/vendas).
     
-> Vale ressaltar que para ser acessado, é necessário a realização de login.
+> It is worth noting that to access it, you must log in.
 
-### 🚗 **Controle de Automóveis**
+## 🚗 Car Control
 
-Para realizar o controle de automóveis, basta acessar a seguinte rota: http://127.0.0.1:5000/automovel
+To perform the car control, simply access its [route](http://127.0.0.1:5000/automovel).
     
-> Vale ressaltar que para ser acessado, é necessário a realização de login.
+> It is worth noting that to access it, you must log in.
