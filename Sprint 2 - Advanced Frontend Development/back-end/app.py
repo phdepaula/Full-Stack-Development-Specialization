@@ -34,7 +34,7 @@ from schemas.produto import (
 # API de documentacao
 @app.get("/", tags=[home_tag])
 def documentacao():
-    """Redireciona para a rota /openapi, tela que
+    """Redireciona para a rota /openapi, tela que \
     permite a escolha do estilo de documentação."""
     return redirect("/openapi")
 
@@ -273,7 +273,7 @@ def inserir_compra(form: CadastroCarrinhoSchema):
     responses={"200": MensagemCarrinhoSchema, "400": MensagemCarrinhoSchema},
 )
 def obter_dados_carrinho():
-    """Obtem a quantidade de compras e o preço atual
+    """Obtem a quantidade de compras e o preço atual \
     acumulado no carrinho na seção atual."""
     try:
         quantidade_total = int(
@@ -305,7 +305,7 @@ def obter_dados_carrinho():
     },
 )
 def cancelar_compra(form: CancelaCarrinhoSchema):
-    """Cancela uma determinada quantidade de itens adicionados
+    """Cancela uma determinada quantidade de itens adicionados \
     ao carrinho de um determinado produto na seção atual."""
     try:
         produto_cancelado = str(unquote(unquote(form.produto)))

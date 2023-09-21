@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class CadastroCarrinhoSchema(BaseModel):
-    """Define como deve ser a estrutura cadastro
+    """Define como deve ser a estrutura cadastro \
     no banco de dados do Carrinho"""
 
     usuario: str
@@ -12,14 +12,14 @@ class CadastroCarrinhoSchema(BaseModel):
 
 
 class MensagemCarrinhoSchema(BaseModel):
-    """Define como uma mensagem de aviso deve ser
+    """Define como uma mensagem de aviso deve ser \
     enviada após o cadastro na base de dados de Carrinho."""
 
     mensagem: str
 
 
 class UpdateCarrinhoSchema(BaseModel):
-    """Define como uma mensagem de aviso deve ser
+    """Define como uma mensagem de aviso deve ser \
     enviada após o cadastro na base de dados de Carrinho."""
 
     mensagem: str
@@ -27,7 +27,7 @@ class UpdateCarrinhoSchema(BaseModel):
 
 
 class DadosCarrinho(BaseModel):
-    """Define como a quantidade e o preco total acumulado
+    """Define como a quantidade e o preco total acumulado \
     no carrinho será retornado"""
 
     quantidade: int

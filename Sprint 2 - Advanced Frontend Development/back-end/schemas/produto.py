@@ -24,7 +24,7 @@ class BuscaCategoriaProdutoSchema(BaseModel):
 
 
 class ListaProdutoSchema(BaseModel):
-    """Define como deve ser a estrutura de resposta
+    """Define como deve ser a estrutura de resposta \
     para uma busca de um produto de uma
     determinada categoria.
     """
@@ -45,7 +45,7 @@ class BuscaNomeProdutoSchema(BaseModel):
 
 
 class BuscaProdutoSchema(BaseModel):
-    """Define como deve ser a estrutura de resposta
+    """Define como deve ser a estrutura de resposta \
     para uma busca de um produto com base em seu nome.
     """
 
@@ -61,8 +61,8 @@ class BuscaProdutoSchemaMensagem(BaseModel):
 
 
 def listar_produto_modelo(produtos: List[Produto]):
-    """Define um modelo de resposta para quando for
-    solicitado uma lista dos produtos cadastrados
+    """Define um modelo de resposta para quando for \
+    solicitado uma lista dos produtos cadastrados \
     na base de dados.
     """
     result = []
@@ -85,7 +85,7 @@ def listar_produto_modelo(produtos: List[Produto]):
 
 
 def buscar_produto_modelo(produto: Produto):
-    """Define um modelo de resposta para quando for
+    """Define um modelo de resposta para quando for \
     solicitado um produto a base de dados."""
     result = {
         "id": produto.id_produtos,

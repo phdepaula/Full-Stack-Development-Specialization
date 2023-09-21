@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class VerificaLoginSchema(BaseModel):
-    """Define como deve ser a estrutura de busca para
+    """Define como deve ser a estrutura de busca para \
     um cadastro no banco de dados de login."""
 
     usuario: str
@@ -10,8 +10,8 @@ class VerificaLoginSchema(BaseModel):
 
 
 class RespostaVerificaLoginSchema(BaseModel):
-    """Define como deve ser a resposta para consulta de dados
-    cadastrados no banco de dados de login após
+    """Define como deve ser a resposta para consulta de dados \
+    cadastrados no banco de dados de login após \
     ser feita uma solitação de login pelo usuário.
     """
 
@@ -20,7 +20,7 @@ class RespostaVerificaLoginSchema(BaseModel):
 
 
 def apresentar_cadastro_login(usuario, senha, mensagem):
-    """Define um modelo de resposta para quando um
+    """Define um modelo de resposta para quando um \
     login for cadastrado à base de dados."""
     result = {"usuario": usuario, "senha": senha}
 
