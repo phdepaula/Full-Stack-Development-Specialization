@@ -1,33 +1,69 @@
-from config_app import *
+from urllib.parse import unquote
+
+from flask import redirect, render_template
+from sqlalchemy.exc import IntegrityError
+
+from config_app import (
+    app, automovel_tag, home_tag,
+    login_tag, vendas_tag, status_login
+)
+from database.model.automovel import Automovel
+from database.model.config_model import session_maker
+from database.model.login import Login
+from database.model.vendas import Vendas
+from schemas.automovel import (
+    AutomovelBuscaSchema,
+    AutomovelDelSchema,
+    AutomovelSchema,
+    AutomovelViewSchema,
+    ListagemAutomovelSchema,
+    apresentar_automovel,
+    listar_automovel_all
+)
+from schemas.mensagem import MensagemSchema
+from schemas.vendas import (
+    ListagemVendaSchema,
+    VendaBuscaSchema,
+    VendaDelSchema,
+    VendaSchema,
+    VendaViewSchema,
+    apresentar_venda,
+    listar_vendas_all
+)
+from schemas.login import (
+    LoginSchema,
+    LoginViewSchema,
+    apresenta_login
+)
 
 
 # API de documentacao
 @app.get("/", tags=[home_tag])
 def documentacao():
-    """Redireciona para a rota /openapi, tela que permite a escolha do estilo de documentação."""
+    """Redireciona para a rota /openapi, tela que permite \
+    a escolha do estilo de documentação."""
     return redirect("/openapi")
 
 
 # APIs de Login
 @app.get("/login", tags=[login_tag])
 def login():
-    """Redireciona para a rota /login, tela que permite o usuario logar no sistema."""
+    """Redireciona para a rota /login, tela que \
+    permite o usuario logar no sistema."""
     return render_template("login.html")
 
 
 @app.post("/logout", tags=[login_tag], responses={"200": MensagemSchema})
 def logout():
-    """Realiza o logout do usuário logado no sistema.
-    Se o usuário ainda não estiver logado, informa que o login ainda não foi realizado.
+    """Realiza o logout do usuário logado no sistema. Se o usuário ainda \
+    não estiver logado, informa que o login ainda não foi realizado.
     """
-    global status_login
-
     if status_login["status"] == "conectado":
-        mensagem = f"O usuário foi desconectado!"
+        mensagem = "O usuário foi desconectado!"
         status_login["usuario"] = None
         status_login["status"] = "desconectado"
     else:
-        mensagem = f"O login ainda não foi realizado!"
+        mensagem = "O login ainda não foi realizado!"
 
     return {"mensagem": mensagem}, 200
 
@@ -35,15 +71,18 @@ def logout():
 @app.post(
     "/autenticar",
     tags=[login_tag],
-    responses={"200": LoginViewSchema, "400": MensagemSchema, "404": MensagemSchema},
+    responses={
+        "200": LoginViewSchema,
+        "400": MensagemSchema,
+        "404": MensagemSchema
+    },
 )
 def autenticar(query: LoginSchema):
-    """Autentica o usuario e a senha digitados na rota \login.
-    Se os dados preenchidos estiverem corretos, redireciona para a rota /vendas.
-    Se os dados preenchidos estiverem incorretos, redireciona para a rota /login.
+    """Autentica o usuario e a senha digitados na rota login. \
+    Se os dados preenchidos estiverem corretos, redireciona \
+    para a rota /vendas. Se os dados preenchidos estiverem \
+    incorretos, redireciona para a rota /login.
     """
-    global status_login
-
     try:
         if status_login["status"] == "conectado":
             mensagem = "Já existe um usuário conectado!"
@@ -55,12 +94,14 @@ def autenticar(query: LoginSchema):
             senha_form = unquote(unquote(query.senha))
 
             query_login = (
-                session.query(Login.id_login, Login.usuario, Login.nome, Login.senha)
+                session.query(
+                    Login.id_login, Login.usuario, Login.nome, Login.senha
+                )
                 .filter(Login.usuario == usuario_form)
                 .first()
             )
 
-            if query_login == None:
+            if query_login is None:
                 mensagem = "Usuário inexistente!"
                 return {"mensagem": mensagem}, 404
             else:
@@ -79,18 +120,16 @@ def autenticar(query: LoginSchema):
                 else:
                     mensagem = "Senha incorreta! Tentar novamente!"
                     return {"mensagem": mensagem}, 404
-
-    except Exception as e:
-        mensagem = f"ERRO: {e}"
+    except Exception as error:
+        mensagem = f"ERRO: {error}"
         return {"mensagem": mensagem}, 400
 
 
 # API's de Automovel
 @app.get("/automovel", tags=[automovel_tag])
 def automovel():
-    """Redireciona para a rota /automovel, tela que permite o usuario realizar o controle de automovéis."""
-    global status_login
-
+    """Redireciona para a rota /automovel, tela que permite \
+    o usuario realizar o controle de automovéis."""
     if status_login["status"] == "conectado":
         return render_template("automovel.html")
     else:
@@ -121,12 +160,11 @@ def cadastrar_automovel(form: AutomovelSchema):
         mensagem = "SUCESSO! Automóvel cadastrado!"
         return apresentar_automovel(automovel, mensagem), 200
 
-    except IntegrityError as e:
+    except IntegrityError:
         mensagem = "ERRO! Automóvel já cadastrado na base de dados!"
         return {"mensagem": mensagem}, 409
-
-    except Exception as e:
-        mensagem = f"ERRO: {e}"
+    except Exception as error:
+        mensagem = f"ERRO: {error}"
         return {"mensagem": mensagem}, 400
 
 
@@ -148,11 +186,10 @@ def listar_automovel():
         if automoveis_banco:
             return listar_automovel_all(automoveis_banco), 200
         else:
-            mensagem = f"Não existem automóveis cadastrados!"
+            mensagem = "Não existem automóveis cadastrados!"
             return {"mensagem": mensagem}, 201
-
-    except Exception as e:
-        mensagem = f"ERRO: {e}"
+    except Exception as error:
+        mensagem = f"ERRO: {error}"
         return {"mensagem": mensagem}, 400
 
 
@@ -162,9 +199,10 @@ def listar_automovel():
     responses={"200": AutomovelDelSchema, "400": MensagemSchema},
 )
 def deletar_automovel(query: AutomovelBuscaSchema):
-    """Deleta um automóvel a partir de um nome informado.
-    Somente autoriza a deleção se o automóvel não estiver cadastrado na tabela de vendas.
-    Retorna uma mensagem de confirmação da remoção.
+    """Deleta um automóvel a partir de um nome informado. \
+    Somente autoriza a deleção se o automóvel não estiver \
+    cadastrado na tabela de vendas. Retorna uma mensagem \
+    de confirmação da remoção.
     """
     try:
         nome_automovel = unquote(unquote(query.nome))
@@ -183,10 +221,12 @@ def deletar_automovel(query: AutomovelBuscaSchema):
             )
             .first()
         )
-        print(venda_cadastrada)
 
         if venda_cadastrada:
-            mensagem = f"ERRO! O Automóvel não pode ser deletado pois já está cadastrado na tabela de vendas!"
+            mensagem = (
+                "ERRO! O Automóvel não pode ser deletado"
+                + " pois já está cadastrado na tabela de vendas!"
+            )
             return {"mensagem": mensagem}, 400
         else:
             delete = (
@@ -202,17 +242,16 @@ def deletar_automovel(query: AutomovelBuscaSchema):
             else:
                 mensagem = "ERRO! Automóvel não encontrado!"
                 return {"mensagem": mensagem}, 400
-
-    except Exception as e:
-        mensagem = f"ERRO: Automóvel não encontrado!"
+    except Exception:
+        mensagem = "ERRO: Automóvel não encontrado!"
         return {"mensagem": mensagem}, 400
 
 
 # API's de Venda
 @app.get("/vendas", tags=[vendas_tag])
 def vendas():
-    """Redireciona para a rota /vendas, tela que permite o usuario realizar o controle de vendas."""
-    global status_login
+    """Redireciona para a rota /vendas, tela que permite \
+    o usuario realizar o controle de vendas."""
 
     if status_login["status"] == "conectado":
         return render_template("vendas.html"), "oi"
@@ -237,8 +276,11 @@ def cadastrar_venda(form: VendaSchema):
             .first()
         )
 
-        if id_automovel == None:
-            mensagem = f"ERRO! Automóvel não cadastrado, favor cadastrar no controle de automóveis para seguir com a venda!"
+        if id_automovel is None:
+            mensagem = (
+                "ERRO! Automóvel não cadastrado, favor cadastrar"
+                + " no controle de automóveis para seguir com a venda!"
+            )
             return {"mensagem": mensagem}, 409
         else:
             venda = Vendas(
@@ -252,9 +294,8 @@ def cadastrar_venda(form: VendaSchema):
             session.commit()
             mensagem = "SUCESSO! Venda cadastrada!"
             return apresentar_venda(venda, mensagem), 200
-
-    except Exception as e:
-        mensagem = f"ERRO: {e}"
+    except Exception as error:
+        mensagem = f"ERRO: {error}"
         return {"mensagem": mensagem}, 400
 
 
@@ -268,8 +309,9 @@ def cadastrar_venda(form: VendaSchema):
     },
 )
 def listar_vendas():
-    """Lista todos as vendas cadastrados na base de dados.
-    Nessa consulta, é realizado um join conectando as tabelas vendas e automóvel para melhor visualização dos dados.
+    """Lista todos as vendas cadastrados na base de dados. \
+    Nessa consulta, é realizado um join conectando as tabelas vendas \
+    e automóvel para melhor visualização dos dados.
     """
     try:
         session = session_maker()
@@ -292,11 +334,10 @@ def listar_vendas():
         if vendas_banco:
             return listar_vendas_all(vendas_banco), 200
         else:
-            mensagem = f"Não existem vendas cadastradas!"
+            mensagem = "Não existem vendas cadastradas!"
             return {"mensagem": mensagem}, 201
-
-    except Exception as e:
-        mensagem = f"ERRO: {e}"
+    except Exception as error:
+        mensagem = f"ERRO: {error}"
         return {"mensagem": mensagem}, 400
 
 
@@ -306,15 +347,16 @@ def listar_vendas():
     responses={"200": VendaDelSchema, "400": MensagemSchema},
 )
 def deletar_vendas(query: VendaBuscaSchema):
-    """Deleta uma Venda a partir do id informado.
+    """Deleta uma Venda a partir do id informado. \
     Retorna uma mensagem de confirmação da remoção.
     """
     try:
         id_vendas = int(unquote(unquote(query.id)))
-        print(id_vendas)
 
         session = session_maker()
-        delete = session.query(Vendas).filter(Vendas.id_vendas == id_vendas).delete()
+        delete = session.query(Vendas).filter(
+            Vendas.id_vendas == id_vendas
+        ).delete()
         session.commit()
 
         if delete:
@@ -323,7 +365,6 @@ def deletar_vendas(query: VendaBuscaSchema):
         else:
             mensagem = "ERRO! Venda não encontrada!"
             return {"mensagem": mensagem}, 400
-
-    except Exception as e:
-        mensagem = f"ERRO: {e}"
+    except Exception as error:
+        mensagem = f"ERRO: {error}"
         return {"mensagem": mensagem}, 400

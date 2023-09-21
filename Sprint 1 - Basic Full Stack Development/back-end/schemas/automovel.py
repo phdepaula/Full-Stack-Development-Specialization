@@ -22,15 +22,15 @@ class AutomovelViewSchema(BaseModel):
 
 
 class AutomovelBuscaSchema(BaseModel):
-    """Define como deve ser a estrutura que representa a busca de um automóvel.
-    Será feita apenas com base em seu nome.
+    """Define como deve ser a estrutura que representa a busca de um \
+    automóvel. Será feita apenas com base em seu nome.
     """
 
     nome: str = "Polo"
 
 
 class AutomovelDelSchema(BaseModel):
-    """Define como deve ser a estrutura do dado retornado após uma requisição
+    """Define como deve ser a estrutura do dado retornado após uma requisição \
     de remoção do automóvel.
     """
 

@@ -47,7 +47,7 @@ class ListagemVendaSchema(BaseModel):
 
 
 class VendaDelSchema(BaseModel):
-    """Define como deve ser a estrutura do dado retornado após uma requisição
+    """Define como deve ser a estrutura do dado retornado após uma requisição \
     de remoção de venda.
     """
 
@@ -56,7 +56,7 @@ class VendaDelSchema(BaseModel):
 
 
 class VendaBuscaSchema(BaseModel):
-    """Define como deve ser a estrutura que representa a busca de uma venda.
+    """Define como deve ser a estrutura que representa a busca de uma venda. \
     Será feita apenas com base em seu id.
     """
 
