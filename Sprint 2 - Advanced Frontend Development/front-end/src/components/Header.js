@@ -75,7 +75,7 @@ export default function Header(props) {
   }
   
   function mostrarDivCarrinho() {
-    setClickCarrinho(!clickLogin);
+    setClickCarrinho(!clickCarrinho);
   }
 
   useEffect(() => {
